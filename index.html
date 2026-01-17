@@ -2,204 +2,100 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Praxis | Our Codex</title>
-
+  <title>The Praxis | The Canon</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-
+  
   <style>
-    /* --- VISUAL DOCTRINE --- */
-    body {
-      background-color: #F2F0E6;
-      color: #111;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    }
-
-    /* TYPOGRAPHY */
-    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
-    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
-    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
-
-    /* COLORS & UTILS */
-    .text-red { color: #CD0000; }
-    .bg-red { background-color: #CD0000; }
-    .border-red { border-color: #CD0000; }
-    .border-navy { border-color: #0b1c3c; }
+    body { background-color: #F2F0E6; color: #111; }
+    .font-shout { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; }
+    .bg-navy { background-color: #0b1c3c; }
     
-    /* NEW: Hard Red Shadows (The "Tasteful Red") */
-    .shadow-red {
-      box-shadow: 8px 8px 0px #CD0000;
-    }
-    
-    /* COMPONENTS */
-    .pillar-card {
-      border: 3px solid #111;
-      padding: 2rem;
-      background: white;
-      transition: all 0.2s ease;
-    }
-    .pillar-card:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 6px 6px 0px #CD0000;
-    }
-    .quote-blockade {
-      border-top: 4px solid #CD0000;
-      border-bottom: 4px solid #CD0000;
-      padding: 2rem 0;
-      margin: 2rem 0;
+    .book-card {
+      border-left: 4px solid #CD0000;
+      padding-left: 1.5rem;
+      margin-bottom: 3rem;
     }
   </style>
 </head>
 
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased min-h-screen flex flex-col">
 
-  <header class="border-b-4 border-black sticky top-0 z-50 bg-[#111]">
-    <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
-      <div class="flex items-center gap-3">
-        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
-          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
-        </svg>
-        <span class="font-shout text-2xl tracking-wide">The Resistance Lab</span>
-      </div>
-      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
-        <a href="/canon.html" class="hover:text-red hover:underline decoration-4 underline-offset-4">The Canon</a>
-        <a href="/protocol.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Store</a>
-        <a href="/.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Network</a>
-      </nav>
+  <header class="border-b-4 border-black bg-[#F2F0E6] sticky top-0 z-50 p-4">
+    <div class="max-w-4xl mx-auto flex justify-between items-center">
+      <a href="/" class="font-shout text-xl">The Resistance Lab</a>
+      <span class="font-machine text-[#CD0000]">/// ARCHIVES</span>
     </div>
   </header>
 
-  <main class="flex-grow">
+  <main class="max-w-4xl mx-auto px-6 py-20 flex-grow">
     
-    <section class="max-w-5xl mx-auto px-6 py-24 text-center">
-      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]">/// The Codex of The Praxis</p>
+    <div class="mb-16">
+      <h1 class="font-shout text-6xl mb-4">The Canon</h1>
+      <p class="font-theory text-xl italic max-w-2xl">
+        "To build the new world, we must understand the code of the old one."
+      </p>
+    </div>
+
+    <section class="mb-20">
+      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">I. The Ancients (The Soul)</h2>
       
-      <h1 class="font-shout text-1xl md:text-6xl leading-[0.9] mb-12">
-        The time to act was yesterday.<br>
-        The next best time <span class="text-[#CD0000] underline decoration-4 underline-offset-8 text-red">Is Now.</span>
-      </h1>
-      
-      <div class="quote-blockade max-w-4xl mx-auto text-left">
-        <p class="font-theory text-lg md:text-xl text-gray-900 mb-4">
-          “Let the ruling classes tremble at a Communistic revolution. The proletarians have nothing to lose but their chains. They have a world to win. Working Men of All Countries, Unite!”
-        </p>
-        <p class="font-shout text-xl text-[#CD0000] text-right">
-          A powerful reminder from Marx and Engels
+      <div class="book-card">
+        <h3 class="font-shout text-3xl">The Republic</h3>
+        <p class="font-machine text-sm text-gray-500 mb-2">PLATO // PHILOSOPHY</p>
+        <p class="font-theory text-gray-800">
+          Essential for understanding the Allegory of the Cave. The reality presented to us by media and corporations is a shadow on the wall. We must have the courage to walk into the sun.
         </p>
       </div>
 
-    </section>
-
-    <section class="bg-black text-[#111] text-[#F2F0E6] py-16 border-t-4 border-red">
-      <div class="max-w-7xl mx-auto px-6">
-        <div class="flex items-end justify-between mb-12 border-b border-gray-500 pb-4">
-          <h2 class="font-shout text-4xl text-white">The Four Laws</h2>
-          <span class="font-machine text-red">/// READ CAREFULLY</span>
-        </div>
-        
-        <div class="grid md:grid-cols-2 gap-10">
-          
-          <div class="pillar-card text-black">
-            <h3 class="font-shout text-3xl mb-2">I. The Vanguard</h3>
-            <p class="font-machine text-xs mb-4 text-[#CD0000] font-bold">THE MORAL ABSOLUTE</p>
-            <p class="font-theory text-sm text-gray-800">
-              We do not invent morality; we discover it. The Praxis serves as the Iron Shield for the voiceless: the animal, the elder, and the minority. To harm the vulnerable is to declare war on our community.
-            </p>
-          </div>
-
-          <div class="pillar-card text-black">
-            <h3 class="font-shout text-3xl mb-2">II. The Reclamation</h3>
-            <p class="font-machine text-xs mb-4 text-[#CD0000] font-bold">THE ECONOMIC REALITY</p>
-            <p class="font-theory text-sm text-gray-800">
-              Labor creates all wealth. We do not steal; we recover. We capture surplus value and vector it back to The Commons. We turn private hoarding into Public Luxury.
-            </p>
-          </div>
-
-          <div class="pillar-card text-black">
-            <h3 class="font-shout text-3xl mb-2">III. Eudaimonia</h3>
-            <p class="font-machine text-xs mb-4 text-[#CD0000] font-bold">THE HUMAN GOAL</p>
-            <p class="font-theory text-sm text-gray-800">
-              Mere survival is an insult to the spirit. Our goal is to flourish. We reject hyper-individualism. When we solve a problem for one, we solve it for the whole.
-            </p>
-          </div>
-
-          <div class="pillar-card text-black">
-            <h3 class="font-shout text-3xl mb-2">IV. The Civic Imperative</h3>
-            <p class="font-machine text-xs mb-4 text-[#CD0000] font-bold">THE POLITICAL METHOD</p>
-            <p class="font-theory text-sm text-gray-800">
-              When authority becomes parasitic, obedience becomes a crime. We practice Socratic Vigilance. Truth is not a decree from above; it is a debate from below.
-            </p>
-          </div>
-
-        </div>
+      <div class="book-card">
+        <h3 class="font-shout text-3xl">Nicomachean Ethics</h3>
+        <p class="font-machine text-sm text-gray-500 mb-2">ARISTOTLE // VIRTUE</p>
+        <p class="font-theory text-gray-800">
+          The guide to Eudaimonia. We learn that the ultimate goal of human existence is not profit, but the virtuous action of "living well."
+        </p>
       </div>
     </section>
 
-    <section class="py-24 px-6 max-w-5xl mx-auto">
-      <div class="border-4 border-black p-8 md:p-12 bg-white shadow-red relative overflow-hidden">
-        
-        <div class="grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div>
-            <h2 class="font-shout text-5xl mb-4">Lab Letters</h2>
-            <p class="font-machine text-gray-500 mb-6 tracking-widest">THE SIGNAL FROM THE UNDERGROUND</p>
-            <p class="font-theory text-sm mb-6 leading-relaxed">
-              We are drowning in noise. This is the antidote. A transmission from the front lines of a parallel society.
-            </p>
-            <ul class="font-machine text-xs space-y-2 mb-6">
-              <li class="flex items-center"><span class="text-[#CD0000] mr-2">➜</span> The Philosophy (Eudaimonia)</li>
-              <li class="flex items-center"><span class="text-[#CD0000] mr-2">➜</span> The Blueprints (How-To Guides)</li>
-              <li class="flex items-center"><span class="text-[#CD0000] mr-2">➜</span> The Letters (Current Events)</li>
-            </ul>
-          </div>
-          <div class="bg-[#F2F0E6] p-6 border-2 border-black">
-            <label class="block font-machine text-xs mb-2">Enter Secure Contact</label>
-            <input type="email" placeholder="example@theresistancelab.net" class="w-full border-2 border-black p-3 font-mono text-sm mb-4 focus:outline-none focus:border-[#CD0000]">
-            <button class="w-full bg-black text-white font-machine py-3 hover:bg-[#CD0000] transition-colors">
-              Join Today
-            </button>
-            <p class="text-xs text-gray-400 mt-3 text-center font-mono">No tracking. No spam.</p>
-          </div>
-        </div>
+    <section class="mb-20">
+      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">II. The Theorists (The Structure)</h2>
+      
+      <div class="book-card">
+        <h3 class="font-shout text-3xl">Das Kapital</h3>
+        <p class="font-machine text-sm text-gray-500 mb-2">KARL MARX // ECONOMICS</p>
+        <p class="font-theory text-gray-800">
+          A technical manual on the mechanics of Surplus Value. It explains how your time is converted into private capital and provides the economic justification for The Reclamation.
+        </p>
+      </div>
+
+      <div class="book-card">
+        <h3 class="font-shout text-3xl">The Conquest of Bread</h3>
+        <p class="font-machine text-sm text-gray-500 mb-2">PYOTR KROPOTKIN // ANARCHISM</p>
+        <p class="font-theory text-gray-800">
+          The definitive argument for Mutual Aid. We learn that competition is a survival strategy for the weak, while cooperation is the strategy of the strong.
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">III. The Visionaries (The Future)</h2>
+      
+      <div class="book-card">
+        <h3 class="font-shout text-3xl">The Dispossessed</h3>
+        <p class="font-machine text-sm text-gray-500 mb-2">URSULA K. LE GUIN // FICTION</p>
+        <p class="font-theory text-gray-800">
+          A blueprint for what an anarcho-syndicalist society actually looks like—flawed, human, but fundamentally free.
+        </p>
       </div>
     </section>
 
   </main>
 
-	<footer class="bg-gray-900 text-gray-50 py-4 border-t-4 border-red">
- 	 <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-    
-   	 <div class="mb-6 md:mb-0">
-   	   <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
-   	   <p class="font-theory text-sm text-gray-200 italic">"We feed on the old world to nurture the new."</p>
-  	  </div>
+  <footer class="bg-navy text-white py-8 text-center border-t-8 border-[#CD0000]">
+    <p class="font-machine text-sm tracking-widest opacity-70">Knowledge is the only ammunition that never runs out.</p>
+  </footer>
 
-  	  <div class="flex flex-col items-center md:items-end">
-   	   <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
-    	    <a href="#" class="hover:text-[#CD0000] transition-colors">PGP Key</a>
-     	   <a href="#" class="hover:text-[#CD0000] transition-colors">Source Code</a>
-    	    <a href="#" class="hover:text-[#CD0000] transition-colors">Doctrine_v1.pdf</a>
-    	  </div>
-    	  <span class="bg-[#CD0000] text-white font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
-   	 </div>
-  	</div>
-
-  	<div class="max-w-6xl mx-auto px-6 my-6">
-  	  <div class="border-t border-gray-700"></div>
- 	 </div>
-
- 	 <div class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center text-red">
-  	  <a href="mailto:intimaconnect@gmail.com" class="font-machine text-sm transition-colors mb-2 uppercase tracking-wide">
-   	   Contact Us
-  	  </a>
-   	 <p class="font-theory text-xs text-gray-500 italic">
-    	  The Intima Connect Foundation
-   	 </p>
-	 <p class="font-theory text-xl text-gray-500">⋆☭𓆩☠︎︎𓆪☭⋆</p>
- 	 </div>
-	</footer>
 </body>
 </html>
