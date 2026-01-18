@@ -2,100 +2,211 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Praxis | The Canon</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
   
-  <style>
-    body { background-color: #F2F0E6; color: #111; }
-    .font-shout { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; }
-    .font-machine { font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; }
-    .font-theory { font-family: 'Merriweather', serif; }
-    .bg-navy { background-color: #0b1c3c; }
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    /* --- VISUAL DOCTRINE --- */
+    body {
+      background-color: #F2F0E6; /* Cream Paper */
+      color: #111;
+      /* Subtle Grain Texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    /* TYPOGRAPHY */
+    .font-shout { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; text-transform: uppercase; }
+    .font-machine { font-family: 'Oswald', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+
+    /* UTILS */
+    .bg-paper { background-color: #F2F0E6; }
+    .text-red { color: #CD0000; }
+    .border-red { border-color: #CD0000; }
     
+    /* COMPONENT: Tactical Book Card */
     .book-card {
+      background: white;
+      border: 3px solid #111; /* Solid Black Border */
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.2s ease;
+      box-shadow: 6px 6px 0px #111; /* Hard Black Shadow */
+    }
+    .book-card:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 10px 10px 0px #CD0000; /* Bigger Black Shadow */
+    }
+    
+    /* COMPONENT: Section Header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid #111; /* Black Line */
+      padding-bottom: 0.5rem;
+    }
+    
+    /* COMPONENT: Vertical Line next to Title */
+    .title-line {
       border-left: 4px solid #CD0000;
       padding-left: 1.5rem;
-      margin-bottom: 3rem;
     }
-  </style>
+</style>
+
 </head>
 
 <body class="antialiased min-h-screen flex flex-col">
 
-  <header class="border-b-4 border-black bg-[#F2F0E6] sticky top-0 z-50 p-4">
-    <div class="max-w-4xl mx-auto flex justify-between items-center">
-      <a href="/" class="font-shout text-xl">The Resistance Lab</a>
-      <span class="font-machine text-[#CD0000]">/// ARCHIVES</span>
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3 group">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <span class="font-shout text-2xl tracking-wide">The Resistance Lab</span>
+      </div>
+        <span class="font-machine text-gray-800 font-semibold tracking-widest text-sm">/// ARCHIVES</span>
+      </a>
     </div>
   </header>
 
   <main class="max-w-4xl mx-auto px-6 py-20 flex-grow">
     
-    <div class="mb-16">
-      <h1 class="font-shout text-6xl mb-4">The Canon</h1>
-      <p class="font-theory text-xl italic max-w-2xl">
+    <div class="mb-20 title-line">
+      <h1 class="font-shout text-6xl mb-4 leading-none text-black">The Canon</h1>
+      <p class="font-theory text-xl italic max-w-2xl text-gray-600">
         "To build the new world, we must understand the code of the old one."
       </p>
     </div>
 
-    <section class="mb-20">
-      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">I. The Ancients (The Soul)</h2>
+    <section class="mb-24">
+      <div class="section-header">
+        <span class="font-shout text-4xl text-black">I.</span>
+        <h2 class="font-machine text-xl text-black font-semibold">The Ancients (The Soul)</h2>
+      </div>
       
-      <div class="book-card">
-        <h3 class="font-shout text-3xl">The Republic</h3>
-        <p class="font-machine text-sm text-gray-500 mb-2">PLATO // PHILOSOPHY</p>
-        <p class="font-theory text-gray-800">
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">The Republic</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// PHILOSOPHY</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">PLATO</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
           Essential for understanding the Allegory of the Cave. The reality presented to us by media and corporations is a shadow on the wall. We must have the courage to walk into the sun.
         </p>
       </div>
 
-      <div class="book-card">
-        <h3 class="font-shout text-3xl">Nicomachean Ethics</h3>
-        <p class="font-machine text-sm text-gray-500 mb-2">ARISTOTLE // VIRTUE</p>
-        <p class="font-theory text-gray-800">
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">Nicomachean Ethics</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// VIRTUE</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">ARISTOTLE</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
           The guide to Eudaimonia. We learn that the ultimate goal of human existence is not profit, but the virtuous action of "living well."
         </p>
       </div>
     </section>
 
-    <section class="mb-20">
-      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">II. The Theorists (The Structure)</h2>
-      
-      <div class="book-card">
-        <h3 class="font-shout text-3xl">Das Kapital</h3>
-        <p class="font-machine text-sm text-gray-500 mb-2">KARL MARX // ECONOMICS</p>
-        <p class="font-theory text-gray-800">
-          A technical manual on the mechanics of Surplus Value. It explains how your time is converted into private capital and provides the economic justification for The Reclamation.
-        </p>
+    <section class="mb-24">
+      <div class="section-header">
+        <span class="font-shout text-4xl text-black">II.</span>
+        <h2 class="font-machine text-xl text-black font-semibold">The Theorists (The Structure)</h2>
       </div>
-
-      <div class="book-card">
-        <h3 class="font-shout text-3xl">The Conquest of Bread</h3>
-        <p class="font-machine text-sm text-gray-500 mb-2">PYOTR KROPOTKIN // ANARCHISM</p>
-        <p class="font-theory text-gray-800">
-          The definitive argument for Mutual Aid. We learn that competition is a survival strategy for the weak, while cooperation is the strategy of the strong.
+      
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">Das Kapital</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// ECONOMICS</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">KARL MARX</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
+          A technical manual on the mechanics of Surplus Value. It explains how your time is converted into private capital and provides the economic justification for The Reclamation.
         </p>
       </div>
     </section>
 
-    <section class="mb-20">
-      <h2 class="font-machine text-2xl text-[#CD0000] border-b-2 border-black pb-2 mb-8">III. The Visionaries (The Future)</h2>
+     <section class="mb-24">
+      <div class="section-header">
+        <span class="font-shout text-4xl text-black">I.</span>
+        <h2 class="font-machine text-xl text-black font-semibold">The Ancients (The Soul)</h2>
+      </div>
       
-      <div class="book-card">
-        <h3 class="font-shout text-3xl">The Dispossessed</h3>
-        <p class="font-machine text-sm text-gray-500 mb-2">URSULA K. LE GUIN // FICTION</p>
-        <p class="font-theory text-gray-800">
-          A blueprint for what an anarcho-syndicalist society actually looks like—flawed, human, but fundamentally free.
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">The Republic</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// PHILOSOPHY</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">PLATO</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
+          Essential for understanding the Allegory of the Cave. The reality presented to us by media and corporations is a shadow on the wall. We must have the courage to walk into the sun.
+        </p>
+      </div>
+
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">Nicomachean Ethics</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// VIRTUE</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">ARISTOTLE</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
+          The guide to Eudaimonia. We learn that the ultimate goal of human existence is not profit, but the virtuous action of "living well."
+        </p>
+      </div>
+    </section>
+
+    <section class="mb-24">
+      <div class="section-header">
+        <span class="font-shout text-4xl text-black">II.</span>
+        <h2 class="font-machine text-xl text-black font-semibold">The Theorists (The Structure)</h2>
+      </div>
+      
+      <div class="book-card group cursor-pointer">
+        <div class="flex justify-between items-start mb-4">
+          <div>
+            <h3 class="font-shout text-4xl text-black mb-1">Das Kapital</h3>
+            <p class="font-machine text-xs text-black font-bold tracking-widest">/// ECONOMICS</p>
+          </div>
+          <span class="font-machine text-xs bg-black text-white px-3 py-1 font-bold tracking-wider">KARL MARX</span>
+        </div>
+        <p class="font-theory text-gray-700 text-sm leading-relaxed border-t border-gray-200 pt-4 mt-2">
+          A technical manual on the mechanics of Surplus Value. It explains how your time is converted into private capital and provides the economic justification for The Reclamation.
         </p>
       </div>
     </section>
 
   </main>
 
-  <footer class="bg-navy text-white py-8 text-center border-t-8 border-[#CD0000]">
-    <p class="font-machine text-sm tracking-widest opacity-70">Knowledge is the only ammunition that never runs out.</p>
+  <footer class="bg-gray-900 py-4 border-t-4 border-red">
+    <div class="max-w-6xl mx-auto flex flex-col items-center text-center md:text-left">
+      <p class="font-machine text-med tracking-widest text-gray-200 opacity-70">Knowledge is the only ammunition that never runs out.</p>
+    </div>
+    <div class="max-w-6xl mx-auto mt-2 px-6 flex flex-col items-center justify-center text-center text-red">
+     <a href="mailto:intimaconnect@gmail.com" class="font-machine text-xs transition-colors mb-2 uppercase tracking-wide">
+      Contact Us
+     </a>
+     <p class="font-theory text-xs text-gray-500 italic">
+       The Intima Connect Foundation
+      </p>
+      <p class="font-theory text-xl text-gray-500">⋆☭𓆩☠︎︎𓆪☭⋆</p>
+      </div>
   </footer>
-
 </body>
 </html>
