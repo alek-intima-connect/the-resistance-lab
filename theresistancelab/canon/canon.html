@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Canon | The Resistance Lab</title>
+  <meta name="description" content="The doctrinal hub of The Resistance Lab. Why we must recover our wealth and expand the commons.">
+
+  <meta property="og:title" content="The Canon | The Resistance Lab">
+  <meta property="og:type" content="website">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    .bg-paper { background-color: #F2F0E6; }
+    
+    /* NAV CARDS */
+    .portal-card {
+      border: 3px solid #111;
+      background: white;
+      padding: 2rem;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+    .portal-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0px #CD0000;
+      border-color: #CD0000;
+    }
+    
+    /* DOCTRINE TEXT */
+    .doctrine-text {
+      border-left: 4px solid #CD0000;
+      padding-left: 1.5rem;
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="/canon/canon.html" class="text-[#CD0000] underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Charity</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-5xl mx-auto w-full px-6 py-16">
+
+    <section class="mb-24">
+      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]">THE DOCTRINE // COMMON SENSE</p>
+      <h1 class="font-shout text-5xl md:text-7xl mb-8 leading-none">The Great Expansion</h1>
+      
+      <div class="doctrine-text font-theory text-lg md:text-xl text-gray-900 space-y-6">
+        <p>
+          We are told that socialism is a foreign concept, yet we live with it every day. When your house catches fire, the fire department does not ask for your credit card. When you drive on the highway, there is no toll booth at every mile. When you walk into a library, the knowledge is free.
+        </p>
+        <p>
+          These are socialist systems. They work because they prioritize <strong>human need</strong> over <strong>private profit</strong>.
+        </p>
+        <p class="font-bold">
+          Our doctrine is simple: Expand what works.
+        </p>
+        <p>
+          We must take our money back from the bourgeoisie—the parasitic class that hoards the surplus value of our labor—and vector it into expanding these systems. Healthcare, housing, and food should function like the fire department: available to all, funded by the wealth we created, and free at the point of use.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="flex items-end justify-between mb-8 border-b-2 border-black pb-4">
+        <h2 class="font-shout text-4xl">The Archives</h2>
+        <span class="font-machine text-gray-500">/// SELECT PATH</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <a href="history.html" class="portal-card group">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-shout text-5xl text-gray-200 group-hover:text-[#CD0000] transition-colors">01</span>
+              <svg class="w-8 h-8 group-hover:text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+            </div>
+            <h3 class="font-shout text-3xl mb-2">Historical Truths</h3>
+            <p class="font-theory text-sm text-gray-600">
+              The narrative you were taught is a fabrication. Access the factual analysis of imperialism, fascism, and the history of the proletariat.
+            </p>
+          </div>
+          <span class="font-machine text-xs mt-6 border-b-2 border-transparent group-hover:border-[#CD0000] inline-block w-max">ENTER ARCHIVE ➜</span>
+        </a>
+
+        <a href="quotes.html" class="portal-card group">
+          <div>
+            <div class="flex justify-between items-start mb-4">
+              <span class="font-shout text-5xl text-gray-200 group-hover:text-[#CD0000] transition-colors">02</span>
+              <svg class="w-8 h-8 group-hover:text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+            </div>
+            <h3 class="font-shout text-3xl mb-2">The Echoes</h3>
+            <p class="font-theory text-sm text-gray-600">
+              Words that resonate with our struggle, spoken by those you wouldn't expect. Proof that the desire for liberation is universal.
+            </p>
+          </div>
+          <span class="font-machine text-xs mt-6 border-b-2 border-transparent group-hover:border-[#CD0000] inline-block w-max">READ THE WORDS ➜</span>
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+      <div class="mb-6 md:mb-0">
+        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
+        <p class="font-theory text-sm italic text-gray-400">"We feed on the old world to nurture the new."</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end">
+        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
+          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+          <a href="#" class="hover:text-red transition-colors">Source Code</a>
+          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
+        </div>
+        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
