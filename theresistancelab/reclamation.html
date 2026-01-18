@@ -1,1 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Reclamation | The Resistance Lab</title>
+  <meta name="description" content="Proletariat funded. 100% of proceeds build Sanctuaries and provide mutual aid.">
 
+  <meta property="og:title" content="The Reclamation | The Resistance Lab">
+  <meta property="og:type" content="website">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    .bg-paper { background-color: #F2F0E6; }
+    
+    .item-card {
+      border: 3px solid #111;
+      background: white;
+      transition: all 0.2s ease;
+    }
+    .item-card:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 8px 8px 0px #CD0000;
+    }
+    .progress-bar {
+      background: repeating-linear-gradient(
+        45deg,
+        #f3f3f3,
+        #f3f3f3 10px,
+        #ffffff 10px,
+        #ffffff 20px
+      );
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="/canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="text-[#CD0000] underline decoration-4 underline-offset-4">The Charity</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <section class="max-w-5xl mx-auto px-6 py-16 text-center">
+      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]">PROLETARIAT FUNDED // 100% TO THE COMMONS</p>
+      <h1 class="font-shout text-5xl md:text-7xl leading-none mb-8">
+        We do not beg.<br>We Build.
+      </h1>
+      <div class="border-l-4 border-red text-left pl-6 max-w-3xl mx-auto">
+        <p class="font-theory text-lg text-gray-800">
+          The government has abandoned its duty to provide survival and thriving conditions. We are reclaiming that duty. 
+          Every dollar spent here bypasses private profit and goes directly into <strong>The Sanctuary Fund</strong>—financing mental health resources, mutual aid, and the construction of physical safe-havens for We The People.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 mb-16">
+      <div class="border-4 border-black p-6 bg-white">
+        <div class="flex justify-between font-machine text-sm mb-2 font-bold">
+          <span>CURRENT OBJECTIVE: SANCTUARY 001 (PHYSICAL LOCATION)</span>
+          <span class="text-[#CD0000]">12% FUNDED</span>
+        </div>
+        <div class="w-full h-8 border-2 border-black progress-bar relative">
+          <div class="absolute top-0 left-0 h-full bg-[#CD0000] w-[12%]"></div>
+        </div>
+        <div class="flex justify-between font-mono text-xs text-gray-500 mt-2">
+          <span>RAISED: $12,400</span>
+          <span>GOAL: $100,000</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-black text-[#F2F0E6] py-16 border-t-4 border-red">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="font-shout text-4xl mb-12 text-white">Supply Depot <span class="text-[#CD0000] text-xl align-middle ml-2">/// MERCH FOR THE CAUSE</span></h2>
+        
+        <div class="grid md:grid-cols-3 gap-8">
+          
+          <div class="item-card text-black p-4">
+            <div class="bg-gray-200 h-64 mb-4 flex items-center justify-center border-2 border-dashed border-gray-400">
+              <span class="font-machine text-gray-500">IMAGE: T-SHIRT</span>
+            </div>
+            <h3 class="font-shout text-2xl">The Standard Issue</h3>
+            <p class="font-theory text-xs mb-4 text-gray-600">Heavyweight cotton. 'Resistance Lab' insignia. Wear it to find your people.</p>
+            <div class="flex justify-between items-center border-t-2 border-black pt-4">
+              <span class="font-mono font-bold">$35.00</span>
+              <button class="bg-black text-white px-4 py-2 font-machine text-xs hover:bg-[#CD0000]">CONTRIBUTE</button>
+            </div>
+          </div>
+
+          <div class="item-card text-black p-4">
+            <div class="bg-gray-200 h-64 mb-4 flex items-center justify-center border-2 border-dashed border-gray-400">
+              <span class="font-machine text-gray-500">IMAGE: HOODIE</span>
+            </div>
+            <h3 class="font-shout text-2xl">The Vanguard Hoodie</h3>
+            <p class="font-theory text-xs mb-4 text-gray-600">For the cold nights organizing the community. Durable. Warm. Black.</p>
+            <div class="flex justify-between items-center border-t-2 border-black pt-4">
+              <span class="font-mono font-bold">$65.00</span>
+              <button class="bg-black text-white px-4 py-2 font-machine text-xs hover:bg-[#CD0000]">CONTRIBUTE</button>
+            </div>
+          </div>
+
+          <div class="item-card text-black p-4">
+            <div class="bg-gray-200 h-64 mb-4 flex items-center justify-center border-2 border-dashed border-gray-400">
+              <span class="font-machine text-gray-500">IMAGE: STICKER PACK</span>
+            </div>
+            <h3 class="font-shout text-2xl">Agitprop Pack</h3>
+            <p class="font-theory text-xs mb-4 text-gray-600">50 Vinyl Stickers. 'Read The Laws'. Place them in your city to wake the others.</p>
+            <div class="flex justify-between items-center border-t-2 border-black pt-4">
+              <span class="font-mono font-bold">$15.00</span>
+              <button class="bg-black text-white px-4 py-2 font-machine text-xs hover:bg-[#CD0000]">CONTRIBUTE</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-16">
+      <div class="border-4 border-black p-8 md:p-12 bg-white shadow-red text-center">
+        <h2 class="font-shout text-4xl mb-4">Direct Action</h2>
+        <p class="font-theory text-sm mb-8">
+          Don't need gear? Contribute directly to the Sanctuary Fund. 100% of these funds are deployed immediately for emergency housing, food, and bail funds.
+        </p>
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+          <button class="bg-black text-white px-8 py-4 font-machine text-lg hover:bg-[#CD0000] shadow-hover border-2 border-black">
+            DONATE $10
+          </button>
+          <button class="bg-white text-black px-8 py-4 font-machine text-lg hover:bg-gray-100 shadow-hover border-2 border-black">
+            DONATE CRYPTO
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+      <div class="mb-6 md:mb-0">
+        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
+        <p class="font-theory text-sm italic text-gray-400">"We feed on the old world to nurture the new."</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end">
+        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
+          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+          <a href="#" class="hover:text-red transition-colors">Source Code</a>
+          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
+        </div>
+        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
