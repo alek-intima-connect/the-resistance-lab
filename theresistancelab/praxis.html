@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Network | The Resistance Lab</title>
+  <meta name="description" content="The central hub for The Resistance Lab. Access archives, tools, and mutual aid resources.">
+
+  <meta property="og:title" content="The Network | The Resistance Lab">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.intimaconnect.com/theresistancelab/praxis.html">
+  
+  <link rel="canonical" href="https://www.intimaconnect.com/theresistancelab/praxis.html" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    /* TYPOGRAPHY */
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+
+    /* UTILS */
+    .bg-paper { background-color: #F2F0E6; }
+    .shadow-red { box-shadow: 6px 6px 0px #CD0000; }
+    .shadow-hover:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px #CD0000; }
+    
+    /* DASHBOARD GRID */
+    .module-card {
+      border: 2px solid #111;
+      background: white;
+      transition: all 0.2s ease;
+      height: 100%;
+    }
+    .module-header {
+      border-bottom: 2px solid #111;
+      padding: 1rem;
+      background: #f8f8f8;
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclemation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Charity</a>
+        <a href="praxis.html" class="text-[#CD0000] underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <section class="border-b-2 border-black bg-white">
+      <div class="max-w-7xl mx-auto px-6 py-12">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div>
+            <p class="font-machine text-gray-500 mb-2 tracking-widest">OPERATIONAL DASHBOARD // V.1.0</p>
+            <h1 class="font-shout text-5xl md:text-6xl leading-none">The Network</h1>
+            <p class="font-theory text-lg mt-4 max-w-2xl text-gray-800">
+              The central nervous system of the parallel society. Access tools, archives, and support structures to build autonomy.
+            </p>
+          </div>
+          
+          <div class="border-2 border-black p-4 bg-[#F2F0E6] font-mono text-xs w-full md:w-auto">
+            <div class="flex justify-between gap-8 border-b border-gray-400 pb-2 mb-2">
+              <span class="text-gray-500">SYSTEM STATUS</span>
+              <span class="text-[#CD0000] font-bold animate-pulse">● ONLINE</span>
+            </div>
+            <div class="flex justify-between gap-8">
+              <span class="text-gray-500">LAST UPDATE</span>
+              <span>18 JAN 2026</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
+      <div class="bg-black p-2 shadow-red flex">
+        <input type="text" placeholder="Search the archives, tools, or resources..." class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500">
+        <button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors">
+          SEARCH
+        </button>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <div class="module-card shadow-hover group cursor-pointer">
+          <div class="module-header flex justify-between items-center">
+            <h3 class="font-shout text-xl">I. The Repository</h3>
+            <span class="text-[#CD0000] font-bold text-xl">⌗</span>
+          </div>
+          <div class="p-6">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              The foundational texts and theory of the movement. Curated PDFs, historical analysis, and the official Codex.
+            </p>
+            <ul class="font-machine text-sm space-y-3">
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>The Four Laws (Expanded)</span> <span>PDF</span>
+              </li>
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Theory of Reclamation</span> <span>EPUB</span>
+              </li>
+              <li class="flex justify-between hover:text-[#CD0000]">
+                <span>Historical Materialism 101</span> <span>MP3</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-card shadow-hover group cursor-pointer">
+          <div class="module-header flex justify-between items-center">
+            <h3 class="font-shout text-xl">II. The Toolkit</h3>
+            <span class="text-[#CD0000] font-bold text-xl">🛠</span>
+          </div>
+          <div class="p-6">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              Practical utilities for the modern age. Digital security guides, hardware recommendations, and encryption keys.
+            </p>
+            <ul class="font-machine text-sm space-y-3">
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Digital Self-Defense Guide</span> <span>V.2.4</span>
+              </li>
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Secure Comms Setup</span> <span>LINK</span>
+              </li>
+              <li class="flex justify-between hover:text-[#CD0000]">
+                <span>Hardware Wallets</span> <span>GUIDE</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-card shadow-hover group cursor-pointer">
+          <div class="module-header flex justify-between items-center">
+            <h3 class="font-shout text-xl">III. The Commons</h3>
+            <span class="text-[#CD0000] font-bold text-xl">♥</span>
+          </div>
+          <div class="p-6">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              Direct support structures. Food distribution, legal defense funds, and community housing initiatives.
+            </p>
+            <ul class="font-machine text-sm space-y-3">
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Legal Defense Fund</span> <span>DONATE</span>
+              </li>
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Find Local Food Bank</span> <span>MAP</span>
+              </li>
+              <li class="flex justify-between hover:text-[#CD0000]">
+                <span>Housing Solidarity</span> <span>FORM</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-card shadow-hover group cursor-pointer">
+          <div class="module-header flex justify-between items-center">
+            <h3 class="font-shout text-xl">IV. The Switchboard</h3>
+            <span class="text-[#CD0000] font-bold text-xl">⚡</span>
+          </div>
+          <div class="p-6">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              Secure connectivity. Access local chapters, encrypted forums, and decentralized event calendars.
+            </p>
+            <div class="grid grid-cols-2 gap-4">
+              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Local Chapters</button>
+              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Secure Forum</button>
+              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Calendar</button>
+              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">PGP Keys</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-card shadow-hover group cursor-pointer border-[#CD0000]">
+          <div class="module-header flex justify-between items-center bg-red-50">
+            <h3 class="font-shout text-xl text-[#CD0000]">V. Lab Letters</h3>
+            <span class="text-[#CD0000] font-bold text-xl">✉</span>
+          </div>
+          <div class="p-6">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              Archive of all past transmissions. The history of the parallel society recorded in real-time.
+            </p>
+            <ul class="font-machine text-sm space-y-3">
+              <li class="border-b border-gray-200 pb-2 flex justify-between text-gray-400">
+                <span>Letter 003: The Noise</span> <span>LOCKED</span>
+              </li>
+              <li class="border-b border-gray-200 pb-2 flex justify-between text-gray-400">
+                <span>Letter 002: Infrastructure</span> <span>LOCKED</span>
+              </li>
+              <li class="flex justify-between hover:text-[#CD0000]">
+                <span>Letter 001: The Beginning</span> <span>READ</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="module-card bg-black text-white flex flex-col justify-center items-center text-center p-8 cursor-pointer hover:bg-[#CD0000] transition-colors border-none shadow-red">
+          <h3 class="font-shout text-3xl mb-4">Submit a Resource</h3>
+          <p class="font-theory text-sm mb-6 opacity-80">
+            Have a tool, text, or service that belongs in the network? Submit it for review by the Vanguard.
+          </p>
+          <span class="font-machine border-b-2 border-white pb-1">UPLOAD DATA ➜</span>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+      <div class="mb-6 md:mb-0">
+        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
+        <p class="font-theory text-sm italic text-gray-400">"We feed on the old world to nurture the new."</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end">
+        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
+          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+          <a href="#" class="hover:text-red transition-colors">Source Code</a>
+          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
+        </div>
+        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
