@@ -12,7 +12,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* --- VISUAL DOCTRINE --- */
     body {
       background-color: #F2F0E6;
       color: #111;
@@ -26,11 +25,11 @@
 
     /* COLORS & UTILS */
     .text-red { color: #CD0000; }
-    .bg-red { background-color: #CD0000; }
+    .text-gray { color: gray-200; }
+    .bg-paper { background-color: #F2F0E6; }
     .border-red { border-color: #CD0000; }
     .border-navy { border-color: #0b1c3c; }
     
-    /* NEW: Hard Red Shadows (The "Tasteful Red") */
     .shadow-red {
       box-shadow: 8px 8px 0px #CD0000;
     }
@@ -52,12 +51,15 @@
       padding: 2rem 0;
       margin: 2rem 0;
     }
+    .book-card:hover {
+      border-color: #CD0000;
+    }
   </style>
 </head>
 
 <body class="antialiased flex flex-col min-h-screen">
 
-  <header class="border-b-4 border-black sticky top-0 z-50 bg-[#111]">
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
     <div class="max-w-6xl mx-auto flex justify-between items-center px-4 py-3">
       <div class="flex items-center gap-3">
         <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
@@ -67,7 +69,7 @@
       </div>
       <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
         <a href="/canon.html" class="hover:text-red hover:underline decoration-4 underline-offset-4">The Canon</a>
-        <a href="/reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Store</a>
+        <a href="/reclemation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Store</a>
         <a href="/praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Network</a>
       </nav>
     </div>
@@ -76,7 +78,7 @@
   <main class="flex-grow">
     
     <section class="max-w-5xl mx-auto px-6 py-24 text-center">
-      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]">/// The Codex of The Praxis</p>
+      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]"> the codex of the paraxis /// currently under construction</p>
       
       <h1 class="font-shout text-1xl md:text-6xl leading-[0.9] mb-12">
         The time to act was yesterday.<br>
@@ -169,21 +171,21 @@
 
   </main>
 
-	<footer class="bg-gray-900 text-gray-50 py-4 border-t-4 border-red">
+	<footer class="bg-gray-900 text-gray-300 py-4 border-t-4 border-red">
  	 <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left">
     
    	 <div class="mb-6 md:mb-0">
-   	   <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
-   	   <p class="font-theory text-sm text-gray-200 italic">"We feed on the old world to nurture the new."</p>
+   	   <span class="font-shout text-3xl text-gray-200 tracking-wide uppercase block mb-2">The Resistance Lab</span>
+   	   <p class="font-theory text-sm italic">"We feed on the old world to nurture the new."</p>
   	  </div>
 
   	  <div class="flex flex-col items-center md:items-end">
    	   <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
-    	    <a href="#" class="hover:text-[#CD0000] transition-colors">PGP Key</a>
-     	   <a href="#" class="hover:text-[#CD0000] transition-colors">Source Code</a>
-    	    <a href="#" class="hover:text-[#CD0000] transition-colors">Doctrine_v1.pdf</a>
+    	    <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+     	    <a href="#" class="hover:text-red transition-colors">Source Code</a>
+    	    <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
     	  </div>
-    	  <span class="bg-[#CD0000] text-white font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+    	  <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
    	 </div>
   	</div>
 
@@ -192,7 +194,7 @@
  	 </div>
 
  	 <div class="max-w-6xl mx-auto px-6 flex flex-col items-center justify-center text-center text-red">
-  	  <a href="mailto:theresistancelab@substack.com" class="font-machine text-sm transition-colors mb-2 uppercase tracking-wide">
+  	  <a href="mailto:intimaconnect@gmail.com" class="font-machine text-xs transition-colors mb-2 uppercase tracking-wide">
    	   Contact Us
   	  </a>
    	 <p class="font-theory text-xs text-gray-500 italic">
@@ -200,6 +202,6 @@
    	 </p>
 	 <p class="font-theory text-xl text-gray-500">⋆☭𓆩☠︎︎𓆪☭⋆</p>
  	 </div>
-	</footer>
+       </footer>
 </body>
 </html>
