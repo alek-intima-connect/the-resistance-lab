@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Assembly | The Resistance Lab</title>
+  <meta name="description" content="Tools to democratize the workplace. From unionization to worker cooperatives.">
+
+  <meta property="og:title" content="The Assembly | The Resistance Lab">
+  <meta property="og:type" content="website">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    .bg-paper { background-color: #F2F0E6; }
+    
+    /* ACCORDION STYLES */
+    details > summary {
+      list-style: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    details > summary::-webkit-details-marker {
+      display: none;
+    }
+    details[open] > summary {
+      background-color: #111;
+      color: white;
+      border-color: #111;
+    }
+    details[open] > summary .arrow {
+      transform: rotate(90deg);
+    }
+    
+    /* SCRIPT CARD */
+    .script-card {
+      background: white;
+      border-left: 4px solid #CD0000;
+      padding: 1.5rem;
+      font-family: 'Courier Prime', monospace; /* Typewriter vibe */
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Charity</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+
+    <section class="max-w-5xl mx-auto px-6 py-20">
+      <p class="font-machine text-[#CD0000] mb-4 tracking-[0.2em]">DEMOCRATIZE THE WORKPLACE</p>
+      <h1 class="font-shout text-5xl md:text-7xl leading-none mb-8">
+        The 8-Hour Dictatorship<br>Ends Here.
+      </h1>
+      <div class="border-l-4 border-black pl-6 max-w-3xl">
+        <p class="font-theory text-lg md:text-xl text-gray-900 leading-relaxed">
+          We embrace democracy at the ballot box, yet we accept tyranny where we spend the majority of our lives: at work. We accept that one person, simply by owning capital, can dictate the lives of hundreds.
+        </p>
+        <p class="font-theory text-lg md:text-xl text-gray-900 leading-relaxed mt-4">
+          Fear stops us. But curiosity is stronger. The ancients built Athens and Rome for the public glory; today, corporations build nothing but private portfolios. We have the technology to make work better, cheaper, and fairer. We just need to take the reins.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-12">
+      <div class="flex items-end justify-between mb-8 border-b-2 border-black pb-4">
+        <h2 class="font-shout text-4xl">The Ladder</h2>
+        <span class="font-machine text-gray-500">/// CHOOSE YOUR WEAPON</span>
+      </div>
+
+      <div class="space-y-4">
+
+        <details class="group border-2 border-black bg-white shadow-[4px_4px_0px_#000]">
+          <summary class="flex justify-between items-center p-6 font-shout text-2xl">
+            <span>I. The Shield (Unionization)</span>
+            <span class="arrow transition-transform duration-200">➜</span>
+          </summary>
+          <div class="p-6 border-t-2 border-black bg-gray-50">
+            <p class="font-theory text-sm mb-4">
+              <strong>The Goal:</strong> Collective Bargaining. You cannot fight a billion-dollar corporation alone.
+            </p>
+            <p class="font-theory text-sm mb-4">
+              <strong>The Philosophy:</strong> Corporations lobby with billions to crush unions because unions <em>work</em>. A union is simply the workers recognizing that without their labor, the capital is worthless.
+            </p>
+            <p class="font-theory text-sm mb-6">
+              <strong>The Action:</strong> Start small. Identify the "organic leaders" in your workplace—the people everyone trusts. Don't use the word "Union" yet. Use words like "Safety," "Fairness," and "Respect."
+            </p>
+            <a href="https://workerorganizing.org/" target="_blank" class="font-machine text-xs bg-black text-white px-4 py-2 hover:bg-[#CD0000]">GET EWOC SUPPORT</a>
+          </div>
+        </details>
+
+        <details class="group border-2 border-black bg-white shadow-[4px_4px_0px_#000]">
+          <summary class="flex justify-between items-center p-6 font-shout text-2xl">
+            <span>II. The Bridge (ESOPs & Buyouts)</span>
+            <span class="arrow transition-transform duration-200">➜</span>
+          </summary>
+          <div class="p-6 border-t-2 border-black bg-gray-50">
+            <p class="font-theory text-sm mb-4">
+              <strong>The Goal:</strong> Ownership Transition. When an owner retires, they usually sell to Private Equity, who strips the company for parts.
+            </p>
+            <p class="font-theory text-sm mb-4">
+              <strong>The Philosophy:</strong> We must normalize the "Worker Buyout." Through Employee Stock Ownership Plans (ESOPs), workers take on debt collectively to buy the company. The loan is paid back via future profits.
+            </p>
+            <p class="font-theory text-sm mb-6">
+              <strong>The Action:</strong> If your boss is aging, plant the seed. "Have you thought about your legacy? Do you want Vultures to tear this place apart, or do you want the people who built it to keep it alive?"
+            </p>
+            <a href="https://www.project-equity.org/" target="_blank" class="font-machine text-xs bg-black text-white px-4 py-2 hover:bg-[#CD0000]">PROJECT EQUITY TOOLS</a>
+          </div>
+        </details>
+
+        <details class="group border-2 border-black bg-white shadow-[4px_4px_0px_#000]">
+          <summary class="flex justify-between items-center p-6 font-shout text-2xl text-[#CD0000]">
+            <span>III. The Goal (Worker Co-Ops)</span>
+            <span class="arrow transition-transform duration-200">➜</span>
+          </summary>
+          <div class="p-6 border-t-2 border-black bg-gray-50">
+            <p class="font-theory text-sm mb-4">
+              <strong>The Goal:</strong> One Worker, One Vote.
+            </p>
+            <p class="font-theory text-sm mb-4">
+              <strong>The Philosophy:</strong> This is Market Socialism. The workers are the Board of Directors. They hire the managers. They decide what to do with the surplus value (profit). If technology makes the job faster, you don't get fired—you work fewer hours for the same pay.
+            </p>
+            <p class="font-theory text-sm mb-6">
+              <strong>The Action:</strong> Build Sanctuaries. New businesses should start as co-ops. Existing businesses must be converted. This is how we build the parallel society.
+            </p>
+            <a href="https://institute.coop/" target="_blank" class="font-machine text-xs bg-black text-white px-4 py-2 hover:bg-[#CD0000]">DEMOCRACY AT WORK</a>
+          </div>
+        </details>
+
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-16">
+      <div class="mb-8">
+        <h2 class="font-shout text-4xl">The Trojan Horse</h2>
+        <p class="font-theory text-sm text-gray-600 mt-2">
+          How to talk to your coworkers without scaring them. Marketing psychology teaches us to appeal to universal desires, not political labels.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <div class="bg-gray-100 p-6 border-2 border-gray-300">
+          <h3 class="font-machine text-xl mb-4">Target: The "Apolitical" Hard Worker</h3>
+          <div class="script-card mb-4">
+            <p class="text-sm italic text-gray-800">
+              "You know what's crazy? We vote for our president, our mayor, even our HOA... but we spend 40 hours a week in a place where we have zero say. It’s like checking your freedom at the door every morning. Imagine if we actually got to vote on who our manager was? We'd probably be way more efficient."
+            </p>
+          </div>
+          <p class="font-machine text-xs text-[#CD0000]">/// TRIGGER: AUTONOMY & LOGIC</p>
+        </div>
+
+        <div class="bg-gray-100 p-6 border-2 border-gray-300">
+          <h3 class="font-machine text-xl mb-4">Target: The Burned Out</h3>
+          <div class="script-card mb-4">
+            <p class="text-sm italic text-gray-800">
+              "Look at the quarterly report. Profits are up 15%, but they're cutting our hours. That money is going somewhere, and it's not to us or the equipment. If we owned this place, that 15% would either be a bonus check or we could just go home at 2 PM on Fridays. Why are we working to fund someone else's third vacation home?"
+            </p>
+          </div>
+          <p class="font-machine text-xs text-[#CD0000]">/// TRIGGER: FAIRNESS & REST</p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+      <div class="mb-6 md:mb-0">
+        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
+        <p class="font-theory text-sm italic text-gray-400">"We feed on the old world to nurture the new."</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end">
+        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
+          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+          <a href="#" class="hover:text-red transition-colors">Source Code</a>
+          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
+        </div>
+        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
