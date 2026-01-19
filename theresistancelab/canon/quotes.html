@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Echoes | The Resistance Lab</title>
+  <meta name="description" content="The words they tried to hide. Radical truths from unexpected historical figures.">
+
+  <meta property="og:title" content="The Echoes | The Resistance Lab">
+  <meta property="og:type" content="website">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    .bg-paper { background-color: #F2F0E6; }
+    
+    /* QUOTE CARD STYLES */
+    .quote-card {
+      background: white;
+      border: 3px solid #111;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .quote-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 8px 8px 0px #CD0000;
+    }
+    .quote-mark {
+      font-family: 'Anton', sans-serif;
+      font-size: 6rem;
+      color: #f3f3f3;
+      position: absolute;
+      top: 0;
+      left: 1rem;
+      z-index: 0;
+      line-height: 1;
+    }
+    .card-content {
+      position: relative;
+      z-index: 10;
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
+          The Canon
+        </a>
+      
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
+          Mutual Aid
+        </a>
+      
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
+          The United Front
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-16">
+
+    <div class="mb-16 border-b-2 border-black pb-8 text-center md:text-left">
+      <p class="font-machine text-[#CD0000] mb-2 tracking-[0.2em]">FILE: UNEXPECTED ALLIES</p>
+      <h1 class="font-shout text-5xl md:text-7xl mb-4 leading-none">The Echoes</h1>
+      <p class="font-theory text-xl max-w-3xl text-gray-800">
+        You were taught their names, but you were denied their full truth. The desire for collective liberation is universal—spoken even by those the system claims as its own.
+      </p>
+      <div class="mt-6">
+        <a href="canon.html" class="font-machine text-xs border-b-2 border-black hover:text-[#CD0000] hover:border-[#CD0000]">← RETURN TO CANON HUB</a>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <div class="quote-card">
+        <div class="quote-mark">“</div>
+        <div class="card-content">
+          <p class="font-theory text-lg md:text-xl leading-relaxed mb-6">
+            "The economic anarchy of capitalist society as it exists today is, in my opinion, the real source of the evil... I am convinced there is only one way to eliminate these grave evils, namely through the establishment of a socialist economy."
+          </p>
+          <div class="border-t-2 border-gray-200 pt-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-shout text-2xl">Albert Einstein</h3>
+              <p class="font-machine text-xs text-[#CD0000] tracking-widest">THE PHYSICIST</p>
+            </div>
+            <span class="font-mono text-xs text-gray-400">SOURCE: "WHY SOCIALISM?" (1949)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-mark">“</div>
+        <div class="card-content">
+          <p class="font-theory text-lg md:text-xl leading-relaxed mb-6">
+            "The few own the many because they possess the means of livelihood of all... The country is governed for the richest, for the corporations, the bankers, the land speculators, and for the exploiters of labor."
+          </p>
+          <div class="border-t-2 border-gray-200 pt-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-shout text-2xl">Helen Keller</h3>
+              <p class="font-machine text-xs text-[#CD0000] tracking-widest">THE ACTIVIST</p>
+            </div>
+            <span class="font-mono text-xs text-gray-400">SOURCE: "THE UNEMPLOYED" (1911)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-mark">“</div>
+        <div class="card-content">
+          <p class="font-theory text-lg md:text-xl leading-relaxed mb-6">
+            "We must recognize that we can’t solve our problem now until there is a radical redistribution of economic and political power... this means a revolution of values and other things. We must see now that the evils of racism, economic exploitation and militarism are all tied together."
+          </p>
+          <div class="border-t-2 border-gray-200 pt-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-shout text-2xl">Dr. Martin Luther King Jr.</h3>
+              <p class="font-machine text-xs text-[#CD0000] tracking-widest">THE REVEREND</p>
+            </div>
+            <span class="font-mono text-xs text-gray-400">SOURCE: SCLC ADDRESS (1967)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card">
+        <div class="quote-mark">“</div>
+        <div class="card-content">
+          <p class="font-theory text-lg md:text-xl leading-relaxed mb-6">
+            "Socialism, Communism, or whatever one chooses to call it, by converting private property into public wealth, and substituting co-operation for competition, will restore society to its proper condition of a thoroughly healthy organism."
+          </p>
+          <div class="border-t-2 border-gray-200 pt-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-shout text-2xl">Oscar Wilde</h3>
+              <p class="font-machine text-xs text-[#CD0000] tracking-widest">THE POET</p>
+            </div>
+            <span class="font-mono text-xs text-gray-400">SOURCE: "THE SOUL OF MAN..." (1891)</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-card border-[#CD0000] bg-black text-white">
+        <div class="quote-mark text-gray-800">“</div>
+        <div class="card-content">
+          <p class="font-theory text-lg md:text-xl leading-relaxed mb-6">
+            "It’s not about 'I made it, I’m rich.' No, it’s about 'I made it, let me help you make it.' ... There's no reason why one man should have all that power and another man have nothing. It’s the way we’re brought up. We need to be taught a different way."
+          </p>
+          <div class="border-t-2 border-white pt-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-shout text-2xl">Tupac Shakur</h3>
+              <p class="font-machine text-xs text-[#CD0000] tracking-widest">THE POET / REVOLUTIONARY</p>
+            </div>
+            <span class="font-mono text-xs text-gray-400">SOURCE: MTV INTERVIEW (1992)</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-12 text-center">
+      <p class="font-machine text-sm text-gray-500 mb-4">KNOW A TRUTH THEY TRIED TO BURY?</p>
+      <a href="mailto:intimaconnect@gmail.com?subject=New%20Echo%20Submission" class="bg-black text-white font-machine px-8 py-4 hover:bg-[#CD0000] transition-colors inline-block">
+        SUBMIT AN ECHO
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+      <div class="mb-6 md:mb-0">
+        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
+        <p class="font-theory text-sm italic text-gray-400">"We feed on the old world to nurture the new."</p>
+      </div>
+      <div class="flex flex-col items-center md:items-end">
+        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
+          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
+          <a href="#" class="hover:text-red transition-colors">Source Code</a>
+          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
+        </div>
+        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
