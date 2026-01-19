@@ -1,12 +1,21 @@
-intima-connect/
-├── index.html
-├── features.html
-├── ai.html
-├── community.html
-├── subscribe.html
-├── css/
-│   └── styles.css (optional if custom styling grows)
-├── js/
-│   └── app.js (for chatbot/quiz logic)
-├── assets/
-│   └── images, logos, icons
+# The Resistance Lab
+
+## /// FILE STRUCTURE
+
+root/
+│
+└── theresistancelab/   
+    │
+    ├── index.html      
+    ├── praxis.html     
+    ├── reclamation.html  
+    │
+    ├── canon/           
+    │   ├── canon.html
+    |   ├── history.html 
+    │   ├── quotes.html  
+    │   └── assembly.html   
+    │
+    └── assets/           
+        ├── docs/
+        └── audio/
