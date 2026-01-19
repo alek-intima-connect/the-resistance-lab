@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Public Ledger | The Resistance Lab</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-typewriter { font-family: 'Courier Prime', monospace; } /* The Ledger Font */
+    .bg-paper { background-color: #F2F0E6; }
+    
+    /* Table Styling */
+    .ledger-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Courier Prime', monospace;
+      font-size: 0.85rem;
+    }
+    .ledger-table th {
+      border-bottom: 3px solid #111;
+      text-align: left;
+      padding: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .ledger-table td {
+      border-bottom: 1px solid #ccc;
+      padding: 1rem;
+    }
+    .ledger-table tr:hover {
+      background-color: rgba(0,0,0,0.05);
+    }
+    
+    /* Status Colors */
+    .inflow { color: #15803d; font-weight: bold; } /* Green */
+    .outflow { color: #CD0000; font-weight: bold; } /* Red */
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">Mutual Aid</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow py-16 px-6">
+
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="flex flex-col md:flex-row justify-between items-end mb-12 border-b-4 border-black pb-6">
+        <div>
+          <p class="font-machine text-[#CD0000] tracking-[0.2em] mb-2">OPEN BOOK</p>
+          <h1 class="font-shout text-5xl md:text-7xl">The Public Ledger</h1>
+        </div>
+        <div class="text-right mt-4 md:mt-0">
+          <p class="font-typewriter text-xs text-gray-500">CURRENT COMMUNITY BALANCE</p>
+          <p class="font-shout text-4xl">$0.00</p>
+        </div>
+      </div>
+
+      <div class="bg-white border-2 border-black shadow-[8px_8px_0px_#111] overflow-x-auto">
+        <table class="ledger-table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Ref ID</th>
+              <th>Description / Beneficiary</th>
+              <th>Type</th>
+              <th class="text-right">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>2026-01-18</td>
+              <td>#DONATION-001</td>
+              <td>Initial Community Seed Fund</td>
+              <td class="inflow">CONTRIBUTION</td>
+              <td class="text-right text-black">+$161.00</td>
+            </tr>
+
+            </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 flex justify-between items-center font-typewriter text-xs text-gray-500">
+        <p>/// END OF RECORD</p>
+        <p>LAST AUDIT: 2026-01-18</p>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red mt-12">
+    <div class="max-w-7xl mx-auto text-center px-6">
+      <span class="font-shout text-xl tracking-wide uppercase text-gray-500">The Resistance Lab</span>
+    </div>
+  </footer>
+
+</body>
+</html>
