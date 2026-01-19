@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donation Received | The Resistance Lab</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
+
+  <base href="/theresistancelab/">
+
+  <style>
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
+    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    .text-red { color: #CD0000; }
+    .bg-paper { background-color: #F2F0E6; }
+    .border-red { border-color: #CD0000; }
+    
+    .status-card {
+      border: 4px solid #111;
+      background: white;
+      box-shadow: 8px 8px 0px #CD0000;
+    }
+  </style>
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
+      <div class="flex items-center gap-3">
+        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
+          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+        </svg>
+        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+      </div>
+      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
+        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">Mutual Aid</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
+      </nav>
+    </div>
+  </header>
+
+    <main class="flex-grow flex items-center justify-center py-20 px-6">
+
+    <div class="max-w-2xl w-full text-center">
+      
+      <div class="flex justify-center mb-4">
+         <span class="text-7xl text-red font-bold">✓</span>
+      </div>
+      
+      <h1 class="font-shout text-5xl md:text-6xl mb-8 leading-tight">
+        We Are Stronger Together
+      </h1>
+      
+      <div class="status-card p-8 mb-12 text-left">
+        <p class="font-machine text-[#CD0000] text-sm tracking-widest mb-2">Thank you for building with us</p>
+        <p class="font-theory text-lg text-gray-800 mb-4">
+          Your contribution has been received. You are doing more than just supporting a cause; you are helping to build a sanctuary. Your funds have been added to the common ledger and are now being put to work for the collective good. We are honored to stand with you.
+        </p>
+        <p class="font-theory text-sm text-gray-600 italic">
+          "Solidarity is not an act of charity, but mutual aid between forces fighting for the same objective."
+        </p>
+      </div>
+
+      <h2 class="font-machine text-xl mb-6 border-b-2 border-black pb-2 inline-block">NEXT DIRECTIVE</h2>
+      
+      <div class="grid md:grid-cols-2 gap-4">
+        <a href="canon/canon.html" class="border-2 border-black bg-white p-4 hover:bg-black hover:text-white transition-colors group">
+          <span class="font-shout text-xl block mb-1">Explore The Canon</span>
+          <span class="font-mono text-xs text-gray-500 group-hover:text-gray-400">← ACCESS KNOWLEDGE</span>
+        </a>
+        <a href="praxis.html" class="border-2 border-black bg-white p-4 hover:bg-black hover:text-white hover:border-[#CD0000] transition-colors group">
+          <span class="font-shout text-xl block mb-1">Reroute to The United Front</span>
+          <span class="font-mono text-xs text-gray-500 group-hover:text-gray-400">VISIT THE DASHBOARD →</span>
+        </a>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
+    <div class="max-w-7xl mx-auto text-center px-6">
+      <a href="index.html" class="font-shout text-xl tracking-wide uppercase text-gray-500 hover:text-white transition-colors group">The Resistance Lab</a>
+    </div>
+  </footer>
+
+</body>
+</html>
