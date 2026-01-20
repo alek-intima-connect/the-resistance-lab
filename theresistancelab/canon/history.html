@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Canon | The Resistance Lab</title>
+  <title>Historical Truths | The Resistance Lab</title>
   <meta name="description" content="The historical truths. A curated archive of anti-imperialist, anti-fascist, and decolonial analysis.">
-
-  <meta property="og:title" content="The Canon | The Resistance Lab">
+  <meta property="og:title" content="Historical Truths | The Resistance Lab">
   <meta property="og:type" content="website">
   
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
@@ -27,6 +26,7 @@
     .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
     .bg-paper { background-color: #F2F0E6; }
     .border-red { border-color: #CD0000; }
+    .text-red { color: #CD0000; }
     
     /* ARCHIVE CARD STYLES */
     .archive-card {
@@ -43,30 +43,39 @@
     .archive-card:hover {
       transform: translate(-4px, -4px);
       box-shadow: 8px 8px 0px #CD0000;
-      border-color: #CD0000;
+      border-color: #111;
     }
+    
+    /* COVER SLOT STYLES */
     .cover-slot {
       width: 100%;
-      min-height: 150px;
+      min-height: 200px; /* Increased slightly for better mobile view */
       background: #1a1a1a;
       flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-family: 'Oswald', sans-serif;
-      text-align: center;
-      padding: 1rem;
       border-bottom: 3px solid #111;
     }
     @media (min-width: 768px) {
-      .cover-slot { width: 140px; min-height: auto; border-bottom: none; border-right: 3px solid #111; }
+      .cover-slot { width: 160px; min-height: auto; border-bottom: none; border-right: 3px solid #111; }
     }
     
-    /* SIDEBAR STICKY */
     .sticky-sidebar {
       position: sticky;
       top: 6rem;
+    }
+    
+    /* Utility for JS filtering */
+    .hidden-card {
+      display: none !important;
+    }
+    .active-filter {
+      color: #CD0000;
+      font-weight: bold;
+    }
+    .active-filter span:first-child:before {
+        content: "► ";
     }
   </style>
 </head>
@@ -82,31 +91,25 @@
         <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
       </div>
       <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
-        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          The Canon
-        </a>
-      
-        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          Mutual Aid
-        </a>
-      
-        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          The United Front
-        </a>
+        <a href="canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Charity</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The United Front</a>
       </nav>
     </div>
   </header>
 
-  <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-12">
+  <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-8">
 
-    <div class="mb-12 border-b-2 border-black pb-8">
-      <div class="flex flex-col md:flex-row justify-between items-end gap-4">
+    <div class="mb-10 border-b-2 border-black pb-6">
+      <div class="flex flex-col md:flex-row justify-between items-end gap-">
         <div>
-          <p class="font-machine text-[#CD0000] mb-2 tracking-[0.2em]">ARCHIVE // V.2.0</p>
-          <h1 class="font-shout text-5xl md:text-6xl leading-none">Historical Truths</h1>
-        </div>
-        <div class="font-theory text-sm italic max-w-xl text-right text-gray-600">
-          "The narrative has been manipulated by the victors. This archive contains the factual record of imperialist extraction and the roadmap for organizing humanity."
+	  <p class="font-machine text-sm mb-2 text-[#CD0000] ">THE ARCHIVE // V1.1</p>
+          <h1 class="font-shout text-5xl md:text-6xl leading-none">Historical Truths
+	  </h1>
+	</div>
+          <div class="font-theory text-sm italic max-w-xl text-right text-gray-600">
+            "The narrative has been manipulated by the victors. This archive contains the factual record of imperialist extraction and the roadmap for organizing humanity."
+	  </div>
         </div>
       </div>
     </div>
@@ -116,58 +119,66 @@
       <aside class="w-full lg:w-64 flex-shrink-0">
         <div class="border-2 border-black p-4 bg-white sticky-sidebar shadow-[4px_4px_0px_#000]">
           <h3 class="font-machine text-lg border-b-2 border-black mb-4 pb-2">Classify By</h3>
-          <ul class="font-machine text-sm space-y-3 cursor-pointer">
-            <li class="hover:text-[#CD0000] font-bold text-[#CD0000] flex justify-between">
-              <span>/// ALL RECORDS</span> <span>[14]</span>
+          <ul class="font-machine text-sm space-y-3 cursor-pointer" id="filter-list">
+            <li class="filter-btn active-filter flex justify-between hover:text-[#CD0000]" data-filter="all">
+              <span>/// ALL RECORDS</span> <span>[04]</span>
             </li>
-            <li class="hover:text-[#CD0000] flex justify-between text-gray-600">
-              <span>/// IMPERIALISM</span> <span>[04]</span>
+            <li class="filter-btn flex justify-between text-gray-600 hover:text-[#CD0000]" data-filter="decolonization">
+              <span>/// DECOLONIZATION</span> <span>[01]</span>
             </li>
-            <li class="hover:text-[#CD0000] flex justify-between text-gray-600">
-              <span>/// FASCISM</span> <span>[03]</span>
+            <li class="filter-btn flex justify-between text-gray-600 hover:text-[#CD0000]" data-filter="fascism">
+              <span>/// RATIONAL FASCISM</span> <span>[01]</span>
             </li>
-            <li class="hover:text-[#CD0000] flex justify-between text-gray-600">
-              <span>/// DECOLONIZATION</span> <span>[05]</span>
+            <li class="filter-btn flex justify-between text-gray-600 hover:text-[#CD0000]" data-filter="economics">
+              <span>/// ECONOMICS</span> <span>[01]</span>
             </li>
-            <li class="hover:text-[#CD0000] flex justify-between text-gray-600">
-              <span>/// ORGANIZING</span> <span>[02]</span>
+            <li class="filter-btn flex justify-between text-gray-600 hover:text-[#CD0000]" data-filter="history">
+              <span>/// HISTORY</span> <span>[01]</span>
             </li>
           </ul>
         </div>
       </aside>
 
       <div class="flex-grow">
-        <div class="grid gap-8">
+        <div class="grid gap-8" id="archive-grid">
 
-          <div class="archive-card group">
-            <div class="cover-slot">
-              <span class="opacity-50">IMG:<br>WRETCHED<br>OF EARTH</span>
+          <div class="archive-card group" data-category="decolonization">
+            <div class="cover-slot bg-gray-100 overflow-hidden relative">
+              <a href="assets/pics/historical-truths/The Wretched of the Earth.PNG" class="block h-full w-full">
+                <img 
+                  src="assets/pics/historical-truths/The Wretched of the Earth.PNG" 
+                  alt="Cover of The Wretched of the Earth" 
+                  class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity"
+                />
+              </a>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="font-shout text-3xl">The Wretched of the Earth</h3>
-                  <span class="font-mono text-xs border border-black px-2 py-1 bg-gray-100">PDF</span>
+                  <h3 class="font-shout text-3xl font-bold leading-tight text-gray-900">The Wretched of the Earth</h3>
+                  <span class="font-mono text-xs border border-black px-2 py-1 bg-gray-100 uppercase">PDF</span>
                 </div>
-                <p class="font-machine text-[#CD0000] text-xs mb-4 tracking-wider">FRANTZ FANON // DECOLONIZATION</p>
-                <p class="font-theory text-sm text-gray-700 mb-4">
+                <p class="font-machine text-[#CD0000] text-xs mb-4 tracking-wider font-bold">FRANTZ FANON // DECOLONIZATION</p>
+                <p class="font-theory text-sm text-gray-700 mb-6 leading-relaxed">
                   A psychological and political analysis of the dehumanizing effects of colonization. Fanon argues that true liberation requires not just the removal of the colonizer, but the mental reconstruction of the colonized.
                 </p>
               </div>
-              <div class="flex gap-6 border-t border-gray-200 pt-4">
-                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">
-                  READ ANALYSIS <span>➜</span>
-                </a>
-                <a href="#" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">
-                  DOWNLOAD SOURCE
-                </a>
+              <div class="flex gap-6 border-t border-gray-200 pt-4 mt-auto">
+                <a href="#" class="font-machine text-sm font-bold text-black hover:text-[#CD0000] flex items-center gap-1 transition-colors">READ ANALYSIS <span>➜</span></a>
+                <a href="https://monoskop.org/images/6/6b/Fanon_Frantz_The_Wretched_of_the_Earth_1963.pdf" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000] transition-colors">DOWNLOAD SOURCE</a>
               </div>
             </div>
           </div>
 
-          <div class="archive-card group">
-            <div class="cover-slot">
-              <span class="opacity-50">IMG:<br>BLACKSHIRTS<br>& REDS</span>
+          <div class="archive-card group" data-category="fascism">
+            <div class="cover-slot bg-gray-100 overflow-hidden relative">
+              <a href="#" class="block h-full w-full">
+		<img 
+                  src="assets/pics/historical-truths/blackshirts-and-reds.jpg" 
+                  alt="Cover of Blackshirts and Reds" 
+                  class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity"
+                />
+              </a>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -181,19 +192,22 @@
                 </p>
               </div>
               <div class="flex gap-6 border-t border-gray-200 pt-4">
-                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">
-                  READ ANALYSIS <span>➜</span>
-                </a>
-                <a href="#" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">
-                  DOWNLOAD SOURCE
-                </a>
+                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">READ ANALYSIS <span>➜</span></a>
+                <a href="https://archive.org/embed/michael-parenti-blackshirts-and-reds" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">DOWNLOAD SOURCE</a>
               </div>
             </div>
           </div>
-
-          <div class="archive-card group">
-            <div class="cover-slot">
-              <span class="opacity-50">IMG:<br>IMPERIALISM</span>
+	
+          <div class="archive-card group" data-category="economics">
+             <div class="cover-slot bg-gray-100 overflow-hidden relative">
+              <a href="#" class="block h-full w-full">
+                <img 
+                  src="assets/pics/historical-truths/imperialism.jpg" 
+                  alt="Cover of Imperialism" 
+                  class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity"
+                  onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'flex items-center justify-center h-full w-full text-white font-machine p-2 text-center\'>IMG:<br>IMPERIALISM</div>'" 
+                />
+              </a>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -207,19 +221,22 @@
                 </p>
               </div>
               <div class="flex gap-6 border-t border-gray-200 pt-4">
-                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">
-                  READ ANALYSIS <span>➜</span>
-                </a>
-                <a href="#" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">
-                  DOWNLOAD SOURCE
-                </a>
+                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">READ ANALYSIS <span>➜</span></a>
+                <a href="https://www.marxists.org/archive/lenin/works/1916/imp-hsc/imperialism.pdf" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">DOWNLOAD SOURCE</a>
               </div>
             </div>
           </div>
 
-          <div class="archive-card group">
-            <div class="cover-slot">
-              <span class="opacity-50">IMG:<br>OPEN VEINS</span>
+          <div class="archive-card group" data-category="history">
+            <div class="cover-slot bg-gray-100 overflow-hidden relative">
+              <a href="#" class="block h-full w-full">
+                 <img 
+                  src="assets/pics/historical-truths/open-veins.jpg" 
+                  alt="Cover of Open Veins" 
+                  class="object-cover w-full h-full opacity-90 group-hover:opacity-100 transition-opacity"
+                  onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'flex items-center justify-center h-full w-full text-white font-machine p-2 text-center\'>IMG:<br>OPEN VEINS</div>'"
+                />
+              </a>
             </div>
             <div class="p-6 flex-grow flex flex-col justify-between">
               <div>
@@ -233,38 +250,65 @@
                 </p>
               </div>
               <div class="flex gap-6 border-t border-gray-200 pt-4">
-                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">
-                  READ ANALYSIS <span>➜</span>
-                </a>
-                <a href="#" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">
-                  DOWNLOAD SOURCE
-                </a>
+                <a href="#" class="font-machine text-sm font-bold hover:text-[#CD0000] flex items-center gap-2">READ ANALYSIS <span>➜</span></a>
+                <a href="https://library.uniteddiversity.coop/More_Books_and_Reports/Open_Veins_of_Latin_America.pdf" class="font-machine text-sm font-bold text-gray-400 hover:text-[#CD0000]">DOWNLOAD SOURCE</a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
     </div>
 
   </main>
-
   <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
+    
       <div class="mb-6 md:mb-0">
         <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
         <p class="font-theory text-sm italic text-gray-400">Novum Mundum Vetere Pasce</p>
       </div>
+
       <div class="flex flex-col items-center md:items-end">
         <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
-          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
           <a href="#" class="hover:text-red transition-colors">Source Code</a>
           <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
         </div>
         <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
       </div>
-    </div>
-  </footer>
+
+    </div> </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const filters = document.querySelectorAll('.filter-btn');
+      const cards = document.querySelectorAll('.archive-card');
+
+      filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // 1. Update UI for Active State
+          filters.forEach(f => f.classList.remove('active-filter', 'text-black', 'font-bold'));
+          filters.forEach(f => f.classList.add('text-gray-600'));
+          
+          btn.classList.add('active-filter');
+          btn.classList.remove('text-gray-600');
+
+          // 2. Filter Logic
+          const filterValue = btn.getAttribute('data-filter');
+
+          cards.forEach(card => {
+            if (filterValue === 'all') {
+              card.classList.remove('hidden-card');
+            } else {
+              if (card.getAttribute('data-category') === filterValue) {
+                card.classList.remove('hidden-card');
+              } else {
+                card.classList.add('hidden-card');
+              }
+            }
+          });
+        });
+      });
+    });
+  </script>
 </body>
 </html>
