@@ -6,7 +6,7 @@
   <title>The Praxis | The Resistance Lab</title>
   <meta name="description" content="The central hub for The Resistance Lab. Access archives, tools, and mutual aid resources.">
 
-  <meta property="og:title" content="The Network | The Resistance Lab">
+  <meta property="og:title" content="The Praxis | The Resistance Lab">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.intimaconnect.com/theresistancelab/praxis.html">
   
@@ -32,6 +32,7 @@
     .bg-red { background-color: #CD0000; }
     .bg-black { background-color: #111; }
     .border-red { border-color: #CD0000; }
+    .text-red { color: #CD0000; }
 
     /* UTILS */
     .bg-paper { background-color: #F2F0E6; }
@@ -85,17 +86,17 @@
       <div class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
-            <p class="font-machine text-gray-500 mb-2 tracking-widest">OPERATIONAL DASHBOARD</p>
+            <p class="font-machine text-gray-500 mb-2 tracking-widest">OUR NETWORK</p>
             <h1 class="font-shout text-5xl md:text-6xl leading-none">The Praxis</h1>
             <p class="font-theory text-lg mt-4 max-w-2xl text-gray-800">
-              The central nervous system of our society. Access tools, archives, and support structures to build autonomy.
+              The central nervous system of our society. Access tools, archives, and support structures to build your communities autonomy.
             </p>
           </div>
           
           <div class="border-2 border-black p-4 bg-[#F2F0E6] font-mono text-xs w-full md:w-auto">
             <div class="flex justify-between gap-8 border-b border-gray-400 pb-2 mb-2">
               <span class="text-gray-500">SYSTEM STATUS</span>
-              <span class="text-[#CD0000] font-bold animate-pulse">● ONLINE</span>
+              <span class="text-red font-bold animate-pulse">● ONLINE</span>
             </div>
             <div class="flex justify-between gap-8">
               <span class="text-gray-500">LAST UPDATE</span>
@@ -108,8 +109,9 @@
 
     <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
       <div class="bg-black p-2 shadow-red flex">
-        <input type="text" placeholder="Search the archives, tools, or resources... [COMING SOON]" class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500">
-        <button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors">
+      <input type="text" placeholder="Search the archives, tools, or resources... [COMING SOON]" class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500">
+	<a href="https://www.google.com" class="bg-[#CD0000] text-white px-6 z-10 font-machine tracking-widest hover:bg-white hover:text-black transition-colors"></a>
+	<button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors">
           SEARCH
         </button>
       </div>
@@ -216,8 +218,12 @@
               Archive of all past Lab Letters.
             </p>
             <ul class="font-machine text-sm space-y-3">
+              </li>
               <li class="border-b border-gray-200 pb-2 flex justify-between text-gray-400">
-                <span>Letter 2601-03: Iran's Stuggle for Genuine Liberation/span> <span>LOCKED</span>
+                <span>Letter 2601-01: The Architecture of Ashes</span> <span>LOCKED</span>
+              </li>
+              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+                <span>Letter 2601-03: Iran's Stuggle for Genuine Liberation</span> <span>READ</span>
               </li>
               <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
                 <span>Letter 2601-02: The Systemic Issue</span> <span>READ</span>
@@ -250,7 +256,6 @@
       </div>
       <div class="flex flex-col items-center md:items-end">
         <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
-          <a href="#" class="hover:text-red transition-colors">PGP Key</a>
           <a href="#" class="hover:text-red transition-colors">Source Code</a>
           <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
         </div>
