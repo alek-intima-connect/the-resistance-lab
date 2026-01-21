@@ -11,7 +11,9 @@
   <meta property="og:url" content="https://www.intimaconnect.com/theresistancelab/praxis.html">
   
   <link rel="canonical" href="https://www.intimaconnect.com/theresistancelab/praxis.html" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
@@ -19,63 +21,77 @@
   <base href="/theresistancelab/">
 
   <style>
+    :root {
+      --theme-red: #CD0000;
+      --theme-paper: #F2F0E6;
+      --theme-black: #111111;
+    }
+
     body {
-      background-color: #F2F0E6;
-      color: #111;
+      background-color: var(--theme-paper);
+      color: var(--theme-black);
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
     }
 
-    /* TYPOGRAPHY */
+    /* TYPOGRAPHY UTILS */
     .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
     .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
     .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
-    .bg-red { background-color: #CD0000; }
-    .bg-black { background-color: #111; }
-    .border-red { border-color: #CD0000; }
-    .text-red { color: #CD0000; }
-
-    /* UTILS */
-    .bg-paper { background-color: #F2F0E6; }
-    .shadow-red { box-shadow: 6px 6px 0px #CD0000; }
-    .shadow-hover:hover { transform: translate(-2px, -2px); box-shadow: 4px 4px 0px #CD0000; }
     
-    /* DASHBOARD GRID */
+    /* COLOR UTILS */
+    .text-red { color: var(--theme-red); }
+    .bg-red { background-color: var(--theme-red); }
+    .border-red { border-color: var(--theme-red); }
+    
+    /* COMPONENT STYLES */
+    .shadow-red { box-shadow: 6px 6px 0px var(--theme-red); }
+    
     .module-card {
-      border: 2px solid #111;
+      border: 2px solid var(--theme-black);
       background: white;
       transition: all 0.2s ease;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
+    
+    /* Hover effect for cards that aren't the generic "Submit" card */
+    .module-card.shadow-hover:hover { 
+      transform: translate(-2px, -2px); 
+      box-shadow: 4px 4px 0px var(--theme-red); 
+    }
+
     .module-header {
-      border-bottom: 2px solid #111;
+      border-bottom: 2px solid var(--theme-black);
       padding: 1rem;
       background: #f8f8f8;
+    }
+    
+    /* Custom List Items */
+    .item-row {
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
     }
   </style>
 </head>
 
 <body class="antialiased flex flex-col min-h-screen">
 
-  <header class="border-b-4 border-black sticky top-0 z-50 bg-paper opacity-95">
+  <header class="border-b-4 border-black sticky top-0 z-50 bg-[#F2F0E6] opacity-95">
     <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
       <div class="flex items-center gap-3">
         <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
           <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
         </svg>
-        <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
+        <a href="index.html" class="font-shout text-2xl tracking-wide text-black decoration-transparent">The Resistance Lab</a>
       </div>
+      
       <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
-        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          The Canon
-        </a>
-      
-        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          Mutual Aid
-        </a>
-      
-        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">
-          The United Front
-        </a>
+        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">The Canon</a>
+        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">Mutual Aid</a>
+        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">The United Front</a>
       </nav>
     </div>
   </header>
@@ -85,40 +101,41 @@
     <section class="border-b-2 border-black bg-white">
       <div class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          
           <div>
             <p class="font-machine text-gray-500 mb-2 tracking-widest">OUR NETWORK</p>
             <h1 class="font-shout text-5xl md:text-6xl leading-none">The Praxis</h1>
             <p class="font-theory text-lg mt-4 max-w-2xl text-gray-800">
-              The central nervous system of our society. Access tools, archives, and support structures to build your communities autonomy.
+              The central nervous system of our society. Access tools, archives, and support structures to build your communities' autonomy.
             </p>
           </div>
           
-          <div class="border-2 border-black p-4 bg-[#F2F0E6] font-mono text-xs w-full md:w-auto">
+          <div class="border-2 border-black p-4 bg-[#F2F0E6] font-mono text-xs w-full md:w-auto shadow-sm">
             <div class="flex justify-between gap-8 border-b border-gray-400 pb-2 mb-2">
               <span class="text-gray-500">SYSTEM STATUS</span>
-              <span class="text-red font-bold animate-pulse">● ONLINE</span>
+              <span class="text-[#CD0000] font-bold animate-pulse">● ONLINE</span>
             </div>
             <div class="flex justify-between gap-8">
               <span class="text-gray-500">LAST UPDATE</span>
               <span>20 JAN 2026</span>
             </div>
           </div>
+
         </div>
       </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
-      <div class="bg-black p-2 shadow-red flex">
-      <input type="text" placeholder="Search the archives, tools, or resources... [COMING SOON]" class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500">
-	<a href="https://www.google.com" class="bg-[#CD0000] text-white px-6 z-10 font-machine tracking-widest hover:bg-white hover:text-black transition-colors"></a>
-	<button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors">
+      <div class="bg-black p-2 shadow-red flex gap-2">
+        <input type="text" placeholder="Search the archives, tools, or resources... [COMING SOON]" class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500 border border-transparent focus:border-[#CD0000]">
+        
+        <button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors border border-[#CD0000] font-bold">
           SEARCH
         </button>
       </div>
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-16">
-      
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <div class="module-card shadow-hover group cursor-pointer">
@@ -126,15 +143,15 @@
             <h3 class="font-shout text-xl">I. The Repository</h3>
             <span class="text-[#CD0000] font-bold text-xl">*</span>
           </div>
-          <div class="p-6">
+          <div class="p-6 flex-grow">
             <p class="font-theory text-sm text-gray-600 mb-6">
               The foundational texts and theory of the movement. Curated PDFs, historical analysis, and the official Codex.
             </p>
             <ul class="font-machine text-sm space-y-3">
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+              <li class="item-row hover:text-[#CD0000]">
                 <span>The Four Laws (Expanded)</span> <span>PDF</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+              <li class="item-row hover:text-[#CD0000]">
                 <span>Theory of Reclamation</span> <span>EPUB</span>
               </li>
               <li class="flex justify-between hover:text-[#CD0000]">
@@ -144,9 +161,12 @@
           </div>
         </div>
 
-		<a href="toolkit.html" class="module-card shadow-hover group block text-left text-black decoration-transparent">
+        <a href="toolkit.html" class="module-card shadow-hover group block text-left text-black decoration-transparent">
           <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl">II. The Toolkit</h3>
+            <h3 class="font-shout text-xl flex items-center gap-2">
+              II. The Toolkit
+              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">NEW</span>
+            </h3>
             <span class="text-[#CD0000] font-bold text-xl">2</span>
           </div>
           <div class="p-6">
@@ -154,14 +174,14 @@
               The workbench of the resistance. Bush survival guides, mastercrafting skills, and safety protocols.
             </p>
             <ul class="font-machine text-sm space-y-3">
-              <li class="border-b border-gray-200 pb-2 flex justify-between group-hover:text-[#CD0000]">
-                <span>Bush Survival</span> <span>LOCKED</span>
+              <li class="item-row group-hover:text-[#CD0000]">
+                <span>Bush Survival</span> <span class="text-gray-400">LOCKED</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between group-hover:text-[#CD0000]">
-                <span>Mastercrafting</span> <span>LOCKED</span>
+              <li class="item-row group-hover:text-[#CD0000]">
+                <span>Mastercrafting</span> <span class="text-gray-400">LOCKED</span>
               </li>
               <li class="flex justify-between group-hover:text-[#CD0000]">
-                <span>Safety Protocols</span> <span>LOCKED</span>
+                <span>Safety Protocols</span> <span class="text-gray-400">LOCKED</span>
               </li>
             </ul>
           </div>
@@ -177,14 +197,14 @@
               Direct support structures. Food distribution, legal defense funds, and community housing initiatives.
             </p>
             <ul class="font-machine text-sm space-y-3">
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
-                <span>Legal Defense Fund</span> <span>DONATE</span>
+              <li class="item-row hover:text-[#CD0000]">
+                <span>Legal Defense Fund</span> <span class="text-[#CD0000]">DONATE</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
-                <span>Find Local Food Bank</span> <span>MAP</span>
+              <li class="item-row hover:text-[#CD0000]">
+                <span>Find Local Food Bank</span> <span class="text-[#CD0000]">MAP</span>
               </li>
               <li class="flex justify-between hover:text-[#CD0000]">
-                <span>Housing Solidarity</span> <span>FORM</span>
+                <span>Housing Solidarity</span> <span class="text-[#CD0000]">FORM</span>
               </li>
             </ul>
           </div>
@@ -218,18 +238,17 @@
               Archive of all past Lab Letters.
             </p>
             <ul class="font-machine text-sm space-y-3">
+              <li class="item-row text-gray-400">
+                <span>Letter 2601-04: The Architecture of Ashes</span> <span>LOCKED</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between text-gray-400">
-                <span>Letter 2601-01: The Architecture of Ashes</span> <span>LOCKED</span>
+              <li class="item-row hover:text-[#CD0000]">
+                <span>Letter 2601-03: Iran's Struggle</span> <span>READ</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
-                <span>Letter 2601-03: Iran's Stuggle for Genuine Liberation</span> <span>READ</span>
-              </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
+              <li class="item-row hover:text-[#CD0000]">
                 <span>Letter 2601-02: The Systemic Issue</span> <span>READ</span>
               </li>
-              <li class="border-b border-gray-200 pb-2 flex justify-between hover:text-[#CD0000]">
-                <span>Letter 2601-01: The Architecture of Ashes</span> <span>READ</span>
+              <li class="flex justify-between hover:text-[#CD0000]">
+                <span>Letter 2601-01: The First Spark</span> <span>READ</span>
               </li>
             </ul>
           </div>
@@ -240,7 +259,10 @@
           <p class="font-theory text-sm mb-6 opacity-80">
             Have a tool, text, or service that belongs in the network?<br>Submit it for review by our Lab.
           </p>
-          <span class="font-machine border-b-2 border-white pb-1">SUBMIT RESOURCE! ➜<br>[ADD BUTTON]</span>
+          
+          <button class="font-machine border-2 border-black px-6 py-2 hover:bg-black hover:text-white transition-all text-sm tracking-widest uppercase font-bold">
+            Submit Resource ➜
+          </button>
         </div>
 
       </div>
