@@ -55,7 +55,6 @@
       flex-direction: column;
     }
     
-    /* Hover effect for cards that aren't the generic "Submit" card */
     .module-card.shadow-hover:hover { 
       transform: translate(-2px, -2px); 
       box-shadow: 4px 4px 0px var(--theme-red); 
@@ -73,6 +72,11 @@
       padding-bottom: 0.5rem;
       display: flex;
       justify-content: space-between;
+    }
+    
+    /* Helper class for search filtering */
+    .hidden-card {
+        display: none !important;
     }
   </style>
 </head>
@@ -98,7 +102,7 @@
 
   <main class="flex-grow">
 
-    <section class="border-b-2 border-black bg-white">
+    <section class="border-b-2 border-black bg-[#F2F0E6]/80 backdrop-blur-sm">
       <div class="max-w-7xl mx-auto px-6 py-12">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           
@@ -116,9 +120,14 @@
               <span class="text-[#CD0000] font-bold animate-pulse">● ONLINE</span>
             </div>
             <div class="flex justify-between gap-8">
-              <span class="text-gray-500">LAST UPDATE</span>
-              <span>20 JAN 2026</span>
+              <span class="text-gray-500">LAST SYNC</span>
+              <span id="live-date" class="font-mono">LOADING...</span>
             </div>
+
+            <script>
+              const dateOptions = { day: 'numeric', month: 'short', year: 'numeric' };
+              document.getElementById('live-date').innerText = new Date().toLocaleDateString('en-GB', dateOptions).toUpperCase();
+            </script>
           </div>
 
         </div>
@@ -127,7 +136,7 @@
 
     <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
       <div class="bg-black p-2 shadow-red flex gap-2">
-        <input type="text" placeholder="Search the archives, tools, or resources... [COMING SOON]" class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500 border border-transparent focus:border-[#CD0000]">
+        <input type="text" id="searchInput" placeholder="Search the archives, tools, or resources..." class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500 border border-transparent focus:border-[#CD0000]">
         
         <button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors border border-[#CD0000] font-bold">
           SEARCH
@@ -136,12 +145,12 @@
     </section>
 
     <section class="max-w-7xl mx-auto px-6 py-16">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="cardGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-        <div class="module-card shadow-hover group cursor-pointer">
+        <div class="module-card shadow-hover group cursor-pointer" data-tags="pdf theory history canon">
           <div class="module-header flex justify-between items-center">
             <h3 class="font-shout text-xl">I. The Repository</h3>
-            <span class="text-[#CD0000] font-bold text-xl">*</span>
+            <span class="text-[#CD0000] font-bold text-xl">1</span>
           </div>
           <div class="p-6 flex-grow">
             <p class="font-theory text-sm text-gray-600 mb-6">
@@ -161,113 +170,249 @@
           </div>
         </div>
 
-        <a href="toolkit.html" class="module-card shadow-hover group block text-left text-black decoration-transparent">
-          <div class="module-header flex justify-between items-center">
+        <div class="module-card shadow-hover group h-full bg-white" data-tags="tools map security ice digital">
+          <div class="module-header flex justify-between items-center ">
             <h3 class="font-shout text-xl flex items-center gap-2">
               II. The Toolkit
-              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">NEW</span>
+              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
             </h3>
             <span class="text-[#CD0000] font-bold text-xl">2</span>
           </div>
-          <div class="p-6">
+          <div class="p-6 flex flex-col">
             <p class="font-theory text-sm text-gray-600 mb-6">
-              The workbench of the resistance. Bush survival guides, mastercrafting skills, and safety protocols.
+              Essential digital defense tools. Monitor activity, secure your communications, and access databases.
             </p>
             <ul class="font-machine text-sm space-y-3">
-              <li class="item-row group-hover:text-[#CD0000]">
-                <span>Bush Survival</span> <span class="text-gray-400">LOCKED</span>
+              <li class="item-row hover:text-[#CD0000] transition-colors">
+                <a href="https://icemap.dev" target="_blank" class="flex justify-between w-full items-center">
+                  <span>ICE Map (Monitoring)</span> 
+                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">LIVE MAP</span>
+                </a>
               </li>
-              <li class="item-row group-hover:text-[#CD0000]">
-                <span>Mastercrafting</span> <span class="text-gray-400">LOCKED</span>
+              <li class="item-row hover:text-[#CD0000] transition-colors">
+                <a href="https://icelist.is" target="_blank" class="flex justify-between w-full items-center">
+                  <span>ICE List (Database)</span> 
+                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">ACCESS</span>
+                </a>
               </li>
-              <li class="flex justify-between group-hover:text-[#CD0000]">
-                <span>Safety Protocols</span> <span class="text-gray-400">LOCKED</span>
+              <li class="item-row hover:text-[#CD0000] transition-colors">
+                <a href="https://ssd.eff.org/" target="_blank" class="flex justify-between w-full items-center">
+                  <span>Surveillance Defense</span> 
+                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">GUIDE</span>
+                </a>
               </li>
-            </ul>
-          </div>
-        </a>
-
-        <div class="module-card shadow-hover group cursor-pointer">
-          <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl">III. The Commons</h3>
-            <span class="text-[#CD0000] font-bold text-xl">3</span>
-          </div>
-          <div class="p-6">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              Direct support structures. Food distribution, legal defense funds, and community housing initiatives.
-            </p>
-            <ul class="font-machine text-sm space-y-3">
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Legal Defense Fund</span> <span class="text-[#CD0000]">DONATE</span>
-              </li>
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Find Local Food Bank</span> <span class="text-[#CD0000]">MAP</span>
-              </li>
-              <li class="flex justify-between hover:text-[#CD0000]">
-                <span>Housing Solidarity</span> <span class="text-[#CD0000]">FORM</span>
+              <li class="pt-4 mt-2 border-t border-gray-200">
+                <a href="toolkit.html" class="flex justify-between w-full hover:translate-x-1 transition-transform font-bold">
+                  <span>BROWSE FULL TOOLKIT</span> 
+                  <span>➜</span>
+                </a>
               </li>
             </ul>
           </div>
         </div>
 
-        <div class="module-card shadow-hover group cursor-pointer">
+        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="money food help mutual aid">
           <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl">IV. The Switchboard</h3>
-            <span class="text-[#CD0000] font-bold text-xl">4</span>
+            <h3 class="font-shout text-xl flex items-center gap-2">
+              III. The Commons
+              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
+            </h3>
+            <span class="text-[#CD0000] font-bold text-xl">3</span>
           </div>
-          <div class="p-6">
+          <div class="p-6 flex-grow flex flex-col">
             <p class="font-theory text-sm text-gray-600 mb-6">
-              Secure connectivity. Access local chapters, encrypted forums, and decentralized event calendars.
+              Resource redistribution. Funding for incarcerated comrades and logistics for survival.
             </p>
-            <div class="grid grid-cols-2 gap-4">
-              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Local Chapters</button>
-              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Secure Forum</button>
-              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">Calendar</button>
-              <button class="border border-black p-2 font-machine text-xs hover:bg-black hover:text-white transition-colors">PGP Keys</button>
+            <ul class="font-machine text-sm space-y-5">
+              <li class="flex flex-col gap-1 group/fund item-row hover:text-[#CD0000] transition-colors pt-2">
+                <a href="https://www.nlg.org/massdefenseprogram/" target="_blank" class="flex justify-between w-full items-center group/link">
+                  <div class="flex justify-between items-end">
+                    <div class="flex flex-col">
+                      <span>BAIL AND DEFENSE FUND</span>
+                      <span class="font-sans text-[10px] text-gray-400 normal-case">www.nlg.org/massdefenseprogram</span>
+                    </div>
+                    <span class="text-xs bg-black text-white px-2 py-0.5 hover:bg-[#CD0000] transition-colors">CONTRIBUTE</span>
+                  </div>
+                </a>
+                <div class="w-full bg-gray-200 h-3 border border-black relative mt-1">
+                  <div class="bg-[#CD0000] h-full" style="width: 0%"></div>
+                  <span class="absolute top-0 left-1 text-[9px] font-mono leading-3 text-white mix-blend-difference">STATUS: AWAITING FUNDS</span>
+                </div>
+              </li>
+              
+              <li class="item-row hover:text-[#CD0000] transition-colors pt-2">
+                <a href="https://www.findhelp.org/" target="_blank" class="flex justify-between w-full items-center group/link">
+                  <div class="flex flex-col">
+                    <span>Supply Lines (Food/Med)</span>
+                    <span class="font-sans text-[10px] text-gray-400 normal-case">www.findhelp.org</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="flex h-2 w-2 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="border border-black px-1 text-xs group-hover/link:bg-black group-hover/link:text-white transition-colors">LOCATE</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+            <div class="mt-auto pt-4 text-center">
+               <p class="font-theory italic text-xs text-gray-400">
+                 "From each according to ability,<br>to each according to need."
+               </p>
             </div>
           </div>
         </div>
 
-        <div class="module-card shadow-hover group cursor-pointer border-[#CD0000]">
-          <div class="module-header flex justify-between items-center bg-red-50">
-            <h3 class="font-shout text-xl text-[#CD0000]">V. Lab Letters</h3>
+        <div class="module-card shadow-hover group h-full bg-white flex flex-col relative overflow-hidden" data-tags="contact comms pgp mesh map">
+          <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');"></div>
+          <div class="module-header flex justify-between items-center relative z-10">
+            <h3 class="font-shout text-xl flex items-center gap-2">
+                IV. The Switchboard
+                <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
+            </h3>
+            <span class="text-[#CD0000] font-bold text-xl">4</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col relative z-10">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              Connect with our network. Secure channels and node maps.
+            </p>
+            <div class="grid grid-cols-1 gap-3">
+              <a href="https://meshmap.net" target="_blank" class="group/btn flex items-center justify-between w-full border-2 border-black p-3 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_#000]">
+                <div class="flex items-center gap-3">
+                  <div class="bg-black text-white w-8 h-8 flex items-center justify-center font-shout group-hover/btn:bg-white group-hover/btn:text-black transition-colors">A</div>
+                  <span class="font-machine tracking-wider text-sm">OPEN SOURCE CHANNELS</span>
+                </div>
+                <span class="text-xs font-mono opacity-50 group-hover/btn:opacity-100">[MESH MAP]</span>
+              </a>
+              <button class="group/btn flex items-center justify-between w-full border-2 border-black p-3 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_#000]">
+                <div class="flex items-center gap-3">
+                  <div class="bg-black text-white w-8 h-8 flex items-center justify-center font-shout group-hover/btn:bg-white group-hover/btn:text-black transition-colors">B</div>
+                  <span class="font-machine tracking-wider text-sm">LOCATE ACTIVE COMMUNITIES</span>
+                </div>
+                <span class="text-xs font-mono opacity-50 group-hover/btn:opacity-100">[COMING]</span>
+              </button>
+              <button onclick="copyPGP(this, 'https://pgpkeygen.com/')" class="relative overflow-hidden group/btn flex items-center justify-between w-full border-2 border-dashed border-gray-400 p-3 hover:border-solid hover:border-[#CD0000] hover:text-[#CD0000] transition-all bg-gray-50">
+                <div class="flex items-center gap-3">
+                  <svg class="w-8 h-8 opacity-40 group-hover/btn:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c0-3 2.5-5.5 5.5-5.5S23 9 23 12M12 12c0 3-2.5 5.5-5.5 5.5S1 15 1 12M12 12V2m0 10v10"/></svg>
+                  <div class="flex flex-col text-left">
+                      <span class="font-machine tracking-wider text-sm text-black group-hover/btn:text-[#CD0000]">PGP KEY</span>
+                      <span id="pgp-feedback" class="font-mono text-[10px] text-gray-500">KEY ID: 0x93FA...</span>
+                  </div>
+                </div>
+                <span class="font-shout text-4xl text-[#CD0000] opacity-0 group-hover/btn:opacity-20 absolute right-4 -rotate-12 transition-opacity">COPY</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="news substack letters updates">
+          <div class="module-header flex justify-between items-center">
+            <h3 class="font-shout text-xl flex items-center gap-2">
+              V. Lab Letters
+              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
+            </h3>
             <span class="text-[#CD0000] font-bold text-xl">5</span>
           </div>
-          <div class="p-6">
+          <div class="p-6 flex-grow flex flex-col">
             <p class="font-theory text-sm text-gray-600 mb-6">
-              Archive of all past Lab Letters.
+              Dispatches from the front lines. Theory, analysis, and encrypted updates.
             </p>
-            <ul class="font-machine text-sm space-y-3">
-              <li class="item-row text-gray-400">
-                <span>Letter 2601-04: The Architecture of Ashes</span> <span>LOCKED</span>
+            <ul class="font-machine text-sm space-y-3 mb-6">
+              <li class="item-row border-b border-[#CD0000]/30 pb-2">
+                <a href="https://theresistancelab.substack.com/p/latest" target="_blank" class="w-full group/item">
+                  <div class="flex justify-between items-center text-[#CD0000] font-bold">
+                    <span>2601-04: The Architecture of Ashes</span>
+                    <span class="bg-[#CD0000] text-white px-1 text-[10px]">NEW</span>
+                  </div>
+                  <span class="text-xs text-gray-500 font-sans normal-case block mt-1 group-hover/item:text-black transition-colors">
+                    Analysis of the collapse. How we build on the ruins...
+                  </span>
+                </a>
               </li>
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Letter 2601-03: Iran's Struggle</span> <span>READ</span>
-              </li>
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Letter 2601-02: The Systemic Issue</span> <span>READ</span>
-              </li>
-              <li class="flex justify-between hover:text-[#CD0000]">
-                <span>Letter 2601-01: The First Spark</span> <span>READ</span>
+              <li class="item-row hover:text-[#CD0000] transition-colors">
+                <a href="https://theresistancelab.substack.com" target="_blank" class="flex justify-between w-full">
+                  <span>2601-03: Iran's Struggle</span> <span class="text-gray-400 text-xs">ARCHIVE</span>
+                </a>
               </li>
             </ul>
+            <div class="mt-auto pt-4 border-t border-gray-200">
+              <a href="https://theresistancelab.substack.com" target="_blank" class="block w-full text-center border-2 border-black py-2 font-machine uppercase hover:bg-black hover:text-white transition-all text-sm tracking-widest font-bold">
+                Join the Mailing List
+              </a>
+            </div>
           </div>
         </div>
 
-        <div class="module-card text-black flex flex-col justify-center items-center text-center p-8 cursor-pointer transition-colors border-none shadow-red">
-          <h3 class="font-shout text-3xl mb-4">Submit a Resource</h3>
-          <p class="font-theory text-sm mb-6 opacity-80">
-            Have a tool, text, or service that belongs in the network?<br>Submit it for review by our Lab.
-          </p>
-          
-          <button class="font-machine border-2 border-black px-6 py-2 hover:bg-black hover:text-white transition-all text-sm tracking-widest uppercase font-bold">
-            Submit Resource ➜
-          </button>
+        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="posters stickers art download">
+          <div class="module-header flex justify-between items-center bg-gray-100">
+            <h3 class="font-shout text-xl text-gray-500">
+                VI. Agitprop
+				<span class="bg-[#111] text-white font-machine text-xs px-2 py-1">COMING</span>
+            </h3>
+            <span class="text-gray-400 font-bold text-xl">6</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-center text-center opacity-80 hover:opacity-100 transition-opacity">
+            <svg class="w-12 h-12 mx-auto mb-4 text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            <h4 class="font-machine text-lg">Visual Materials</h4>
+            <p class="font-theory text-xs mt-2 mb-4">Posters, Stickers, and Stencils for local distribution.</p>
+            
+            <a href="#" class="border border-black px-4 py-2 text-xs font-mono uppercase hover:bg-black hover:text-white transition-colors">
+                DOWNLOAD PACK [Coming Soon]
+            </a>
+          </div>
         </div>
 
+        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="education socialism study teach discord">
+          <div class="module-header flex justify-between items-center bg-gray-900 text-white">
+            <h3 class="font-shout text-xl">
+                VII. The Sanctuary
+			    <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">NEW</span>
+            </h3>
+            <span class="text-[#CD0000] font-bold text-xl">7</span>
+          </div>
+          <div class="p-6 flex-grow flex flex-col">
+            <p class="font-theory text-sm text-gray-600 mb-6">
+              "The Digital Sanctuary." A secure place to learn and organize. To my Proletariat of the world, we shall unite!
+            </p>
+            
+            <div class="flex items-center gap-2 mb-4 bg-gray-100 p-2 rounded border border-gray-300">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="font-mono text-xs text-gray-600">ACTIVE MEMBERS: 7</span>
+            </div>
+
+            <ul class="font-machine text-sm space-y-3">
+              <li class="item-row hover:text-[#CD0000]">
+                <span>Week 1: Marx & Engels</span> <span class="text-gray-400">READING RAINBOW</span>
+              </li>
+              <li class="item-row hover:text-[#CD0000]">
+                <span>Week 2: Das Kapital</span> <span class="text-gray-400">READING RAINBOW</span>
+              </li>
+            </ul>
+            <div class="mt-auto pt-4">
+               <a href="https://discord.gg/y3qswCWYjm" target="_blank" class="block w-full text-center bg-black text-white py-2 text-xs font-machine hover:bg-[#CD0000] transition-colors">
+                   JOIN THE DISCORD
+               </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="module-card text-black flex flex-col justify-center items-center text-center p-8 cursor-pointer transition-colors border-none shadow-red bg-white relative overflow-hidden group">
+          <div class="absolute top-0 left-0 w-full h-2"></div>
+          <h3 class="font-shout text-3xl mb-3 mt-2">Strengthen Our Collective</h3>
+          <p class="font-theory text-sm mb-8 opacity-80 max-w-xs mx-auto leading-relaxed">
+            Shared knowledge is power. Do you have a tool or text to add?
+          </p>
+          <a href="mailto:intimaconnect@gmail.com?subject=Resource%20Contribution%20For%20The%20Dashboard&body=MY%20RESOURCE%0D%0A--------------------------------%0D%0AName%20of%20Resource%3A%20%0D%0A%0D%0AType%20(Tool%2FText%2FService)%3A%20%0D%0A%0D%0ALocation%20or%20URL%3A%20%0D%0A%0D%0ABrief%20Description%3A%20%0D%0A" 
+             class="font-machine border-2 border-black px-8 py-3 bg-[#F2F0E6] hover:bg-[#CD0000] hover:text-white hover:-translate-y-1 transition-all text-sm tracking-widest uppercase font-bold shadow-sm" 
+             class="font-machine border-2 border-black px-8 py-3 bg-[#F2F0E6] hover:bg-[#CD0000] hover:text-white hover:-translate-y-1 transition-all text-sm tracking-widest uppercase font-bold shadow-sm">
+            Make a Contribution ➜
+          </a>
+        </div>
+    
       </div>
     </section>
-
+    
   </main>
 
   <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
@@ -285,6 +430,54 @@
       </div>
     </div>
   </footer>
+
+  <button onclick="copyLink()" id="shareBtn" class="fixed bottom-6 right-6 z-50 bg-white text-black font-machine border-2 border-black px-6 py-3 shadow-[4px_4px_0px_#CD0000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center gap-3 group">
+    <svg class="w-5 h-5 text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+    <span id="shareText" class="tracking-widest font-bold">INVITE FRIENDS</span>
+  </button>
+
+  <script>
+    // SHARE BUTTON LOGIC
+    function copyLink() {
+      navigator.clipboard.writeText(window.location.href);
+      const btnText = document.getElementById('shareText');
+      const originalText = btnText.innerText;
+      btnText.innerText = "LINK COPIED";
+      setTimeout(() => { btnText.innerText = originalText; }, 3000);
+    }
+
+    // PGP BUTTON LOGIC
+    function copyPGP(btn, key) {
+      navigator.clipboard.writeText(key);
+      const feedback = btn.querySelector('#pgp-feedback');
+      const originalText = feedback.innerText;
+      feedback.innerText = "// COPIED //";
+      feedback.classList.add("text-[#CD0000]", "font-bold");
+      setTimeout(() => {
+        feedback.innerText = originalText;
+        feedback.classList.remove("text-[#CD0000]", "font-bold");
+      }, 2000);
+    }
+
+    // SEARCH BAR LOGIC
+    const searchInput = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.module-card');
+
+    searchInput.addEventListener('keyup', (e) => {
+      const term = e.target.value.toLowerCase();
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const tags = card.getAttribute('data-tags') || "";
+        
+        if (text.includes(term) || tags.includes(term)) {
+          card.classList.remove('hidden-card');
+        } else {
+          card.classList.add('hidden-card');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
