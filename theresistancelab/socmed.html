@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Resistance Lab | Network Node</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-paper: #F2F0E6;
+            --text-main: #111111;
+            --accent: #CD0000;
+            --border-thick: 3px solid #111;
+            --shadow-hard: 6px 6px 0px #000000;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-paper);
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
+            color: var(--text-main);
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* --- TICKER SYSTEM --- */
+        .news-ticker {
+            width: 100%;
+            background: #111;
+            color: var(--bg-paper);
+            padding: 14px 0;
+            overflow: hidden;
+            border-bottom: var(--border-thick);
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        .ticker-wrap { display: flex; width: fit-content; }
+
+        .ticker-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll-slow 120s linear infinite;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .news-ticker:hover .ticker-content { animation-play-state: paused; }
+
+        .ticker-item {
+            display: flex; align-items: center;
+            padding: 0 60px; color: var(--bg-paper); text-decoration: none;
+        }
+
+        .ticker-item:hover { color: var(--accent); }
+        .source-tag { color: var(--accent); font-weight: 700; margin-right: 12px; }
+        .crypto-tag { color: #fff; background: var(--accent); padding: 2px 8px; margin-right: 12px; font-size: 0.75rem; }
+        .time-tag { color: #666; font-size: 0.75rem; margin-left: 12px; font-style: italic; }
+
+        @keyframes scroll-slow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- UI HELPERS --- */
+        .link-container {
+            width: 100%; max-width: 480px;
+            padding: 60px 24px;
+            display: flex; flex-direction: column; gap: 16px;
+            box-sizing: border-box;
+        }
+
+        .profile-section { text-align: center; margin-bottom: 20px; position: relative; }
+        
+        .profile-img {
+            width: 140px; height: 140px; background: #111;
+            border: var(--border-thick); margin: 0 auto 20px auto;
+            border-radius: 50%; overflow: hidden;
+            box-shadow: var(--shadow-hard);
+            position: relative;
+        }
+        .profile-img::after {
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.2) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.05));
+            background-size: 100% 3px, 3px 100%; pointer-events: none;
+        }
+        .profile-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%) contrast(1.2); }
+        
+        .handle { font-family: 'Anton', sans-serif; font-size: 2.6rem; margin: 0; letter-spacing: 1px; text-transform: uppercase; }
+        
+        .bio-tag {
+            font-family: 'Oswald', sans-serif; background: var(--accent);
+            color: #fff; padding: 4px 14px; font-size: 0.8rem;
+            display: inline-block; margin: 12px 0; transform: skew(-12deg);
+            font-weight: 700; letter-spacing: 2px;
+        }
+
+        /* --- BUTTONS --- */
+        .link-btn {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #fff; color: #111; text-decoration: none;
+            padding: 18px 24px; border: var(--border-thick);
+            box-shadow: var(--shadow-hard); transition: 0.15s ease-in-out;
+            position: relative;
+        }
+
+        .link-btn:hover { 
+            transform: translate(-4px, -4px); 
+            box-shadow: 10px 10px 0px var(--accent);
+            background: #fcfcfc;
+        }
+
+        .link-btn:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #111; }
+
+        .btn-title { font-family: 'Anton', sans-serif; font-size: 1.3rem; letter-spacing: 0.5px; }
+        .btn-sub { font-family: 'Oswald', sans-serif; font-size: 0.8rem; opacity: 0.7; margin-left: 10px; display: inline-block; transform: translateY(-2px); }
+
+        .card-crypto { background: #111; color: #fff; cursor: pointer; margin-top: 10px;}
+        .card-crypto:hover { background: #1a1a1a; }
+        .copy-msg { font-family: 'Oswald', sans-serif; color: var(--accent); display:none; letter-spacing: 1px; }
+
+        /* Divider */
+        .divider { 
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            font-family: 'Oswald', sans-serif; font-size: 0.8rem; opacity: 0.5; margin: 10px 0;
+        }
+        .divider::before, .divider::after {
+            content: ""; height: 2px; background: #111; flex-grow: 1;
+        }
+
+        /* --- FOOTER (RE-STYLED TO MATCH THEME) --- */
+        footer {
+            margin-top: auto; padding: 50px 20px;
+            border-top: var(--border-thick); 
+            width: 100%; 
+            background: #111; /* Dark footer for contrast */
+            color: #eee;
+            box-sizing: border-box; 
+        }
+
+        .footer-content {
+            max-width: 800px; margin: 0 auto;
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
+            text-align: center;
+        }
+
+        .footer-title { font-family: 'Anton', sans-serif; font-size: 1.8rem; letter-spacing: 1px; text-transform: uppercase; color: #fff;}
+        .footer-motto { font-family: 'Merriweather', serif; font-style: italic; color: #888; font-size: 0.9rem; margin-top: -10px;}
+        
+        .footer-links {
+            display: flex; gap: 20px;
+            font-family: 'Oswald', sans-serif; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+        }
+        .footer-links a { color: #fff; text-decoration: none; transition: 0.2s; border-bottom: 1px solid transparent;}
+        .footer-links a:hover { color: var(--accent); border-bottom: 1px solid var(--accent); }
+
+        .footer-tag { 
+            background: var(--accent); color: #fff; 
+            font-family: 'Oswald', sans-serif; font-size: 0.7rem; 
+            padding: 3px 8px; letter-spacing: 1px; margin-top: 10px;
+        }
+
+        /* MOBILE FIXES */
+        @media (max-width: 400px) {
+            .handle { font-size: 2rem; }
+            .btn-title { font-size: 1.1rem; }
+            .btn-sub { display: none; }
+            .footer-links { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="news-ticker">
+        <div class="ticker-wrap">
+            <div class="ticker-content" id="ticker-stream">
+                <span class="ticker-item">/// NETWORK SYNC COMPLETE /// ACTIVATING /// STANDBY ///</span>
+            </div>
+            <div class="ticker-content" id="ticker-stream-clone"></div>
+        </div>
+    </div>
+
+    <div class="link-container">
+        <div class="profile-section">
+            <div class="profile-img">
+                <img src="profile.jpg" alt="The Resistance Lab">
+            </div> 
+            <div class="bio-tag">OUR LINKS // THE GATEWAY</div>
+            <h1 class="handle">The Resistance Lab</h1>
+        </div>
+
+        <a href="https://intimaconnect.com/theresistancelab" target="_blank" class="link-btn">
+            <div>
+                <span class="btn-title">THE RESISTANCE LAB'S WEBSITE</span>
+            </div>
+            <span style="font-size: 1.5rem;">→</span>
+        </a>
+        
+        <a href="https://www.instagram.com/theresistancelab_" target="_blank" class="link-btn">
+            <span class="btn-title">AGITPROP <span class="btn-sub">INSTAGRAM</span></span>
+            <span style="font-size: 1.3rem;">↗</span>
+        </a>
+
+        <a href="https://www.tiktok.com/@theresistancelab_" target="_blank" class="link-btn">
+            <span class="btn-title">FRAGMENTS <span class="btn-sub">TIKTOK [COMPROMISED]</span></span>
+            <span style="font-size: 1.3rem;">∞</span>
+        </a>
+
+        <a href="https://www.youtube.com/@TheResistanceLab" target="_blank" class="link-btn">
+            <span class="btn-title">BROADCASTS <span class="btn-sub">YOUTUBE</span></span>
+            <span style="font-size: 1.3rem;">▶</span>
+        </a>
+        
+        <a href="https://theresistancelab.substack.com" target="_blank" class="link-btn">
+            <div>
+                <span class="btn-title">THE LAB LETTERS</span>
+                <span class="btn-sub">SUBSTACK</span>
+            </div>
+            <span style="font-size: 1.3rem;">✉</span>
+        </a>
+
+        <div class="divider">/// COMMUNITIES ///</div>
+
+        <a href="https://discord.com/invite/y3qswCWYjm" target="_blank" class="link-btn">
+            <div>
+                <span class="btn-title">THE SANCTUARY</span>
+                <span class="btn-sub">DISCORD</span>
+            </div>
+            <span style="font-size: 1.3rem;">❖</span>
+        </a>
+
+        <a href="https://www.reddit.com/user/TheResistanceLab" target="_blank" class="link-btn">
+            <span class="btn-title">PUBLIC FORUM <span class="btn-sub">REDDIT [COMPROMISED]</span></span>
+            <span style="font-size: 1.3rem;">🗨</span>
+        </a>
+
+        <div class="link-btn card-crypto" onclick="copyWallet(this)">
+            <div class="btn-content">
+                <span class="btn-title" id="wallet-label">SUPPORT THE LAB (BTC)</span>
+                <span class="copy-msg">COMING SOON</span>
+            </div>
+            <span style="font-size: 1.2rem;">⧉</span>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <div class="footer-title">The Resistance Lab</div>
+                <div class="footer-motto">Novum Mundum Vetere Pasce</div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Source Code</a>
+                <a href="#">Doctrine_v1.pdf</a>
+            </div>
+
+            <div class="footer-tag">EST. 2026 // DECENTRALIZED</div>
+        </div>
+    </footer>
+
+    <script>
+        function copyWallet(element) {
+            const addr = "0x3B689945D40C450A72F67107779836367798"; 
+            navigator.clipboard.writeText(addr);
+            const title = element.querySelector('#wallet-label');
+            const msg = element.querySelector('.copy-msg');
+            title.style.display = 'none'; msg.style.display = 'block';
+            setTimeout(() => { title.style.display = 'block'; msg.style.display = 'none'; }, 2000);
+        }
+
+        function formatTime(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        }
+
+        async function updateResistanceTicker() {
+            const stream = document.getElementById('ticker-stream');
+            const clone = document.getElementById('ticker-stream-clone');
+            
+            const newsUrl = 'https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=a83cbaa7e4d14e18bb80c81d6f51e68a';
+            const proxy = 'https://api.allorigins.win/get?url=' + encodeURIComponent(newsUrl);
+
+            try {
+                const cryptoRes = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+                const cryptoData = await cryptoRes.json();
+                const btc = Math.floor(cryptoData.bitcoin.usd).toLocaleString();
+                const eth = Math.floor(cryptoData.ethereum.usd).toLocaleString();
+
+                const response = await fetch(proxy);
+                const json = await response.json();
+                const newsData = JSON.parse(json.contents);
+
+                // KRAKEN LINKS INTEGRATED HERE
+                let contentHtml = `
+                    <a href="https://pro.kraken.com/app/trade/btcusd" target="_blank" class="ticker-item"><span class="crypto-tag">BTC</span> $${btc}</a>
+                    <a href="https://pro.kraken.com/app/trade/ethusd" target="_blank" class="ticker-item"><span class="crypto-tag">ETH</span> $${eth}</a>
+                `;
+
+                if (newsData.articles) {
+                    contentHtml += newsData.articles.slice(0, 10).map(article => {
+                        const time = formatTime(article.publishedAt);
+                        const source = article.source.name.toUpperCase();
+                        const cleanTitle = article.title.split(' - ')[0].trim().toUpperCase();
+                        return `<a href="${article.url}" target="_blank" class="ticker-item">
+                                    <span class="source-tag">[${source}]</span> 
+                                    ${cleanTitle}
+                                    <span class="time-tag">T-${time}</span>
+                                </a>`;
+                    }).join('');
+                }
+
+                stream.innerHTML = contentHtml;
+                clone.innerHTML = contentHtml;
+            } catch (error) {
+                const err = `<div class="ticker-item">/// DATA LINK UNSTABLE /// RE-ROUTING SIGNAL... ///</div>`;
+                stream.innerHTML = err;
+                clone.innerHTML = err;
+            }
+        }
+
+        updateResistanceTicker();
+        setInterval(updateResistanceTicker, 600000);
+    </script>
+</body>
+</html>
