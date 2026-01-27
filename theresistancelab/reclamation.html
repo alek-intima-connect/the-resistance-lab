@@ -5,35 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mutual Aid | The Resistance Lab</title>
   
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
-  <base href="/theresistancelab/">
-
   <style>
-    body {
-      background-color: #F2F0E6;
-      color: #111;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    }
+    /* Custom Font Definitions matching your classes */
     .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
     .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
     .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
-    .bg-paper { background-color: #F2F0E6; }
-    .bg-red { background-color: #CD0000; }
-    .border-red { border-color: #CD0000; }
-    .text-red { color: #CD0000; }
     
+    body {
+      background-color: #F2F0E6;
+      color: #111;
+      /* Noise texture */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    }
+
+    /* Animation Keyframes */
     @keyframes pulse-line {
       0% { width: 10%; opacity: 0.5; }
       100% { width: 100%; opacity: 1; }
     }
+    
     .activity-line {
       height: 4px;
       background: #CD0000;
       animation: pulse-line 5s ease-in-out;
     }
 
+    /* Card Hover Effects */
     .supply-card {
       border: 3px solid #111;
       background: white;
@@ -54,6 +55,12 @@
       justify-content: center;
       border-bottom: 3px solid #111;
     }
+    
+    /* Utility Helpers */
+    .bg-paper { background-color: #F2F0E6; }
+    .bg-red { background-color: #CD0000; }
+    .text-red { color: #CD0000; }
+    .border-red { border-color: #CD0000; }
   </style>
 </head>
 
@@ -67,6 +74,7 @@
         </svg>
         <a href="index.html" class="font-shout text-2xl tracking-wide">The Resistance Lab</a>
       </div>
+      
       <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
         <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">The Canon</a>
         <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4">Mutual Aid</a>
@@ -90,7 +98,7 @@
            <p class="font-machine text-[#CD0000] tracking-[0.2em]">PROLETARIAT FUNDED // 100% GOES BACK TO THE COMMUNITY</p>
         </div>
         
-        <h1 id="total-fund" class="font-shout text-7xl md:text-9xl mb-4">$161.00</h1>
+        <h1 id="total-fund" class="font-shout text-7xl md:text-9xl mb-4 text-white">$161.00</h1>
         
         <p class="font-machine text-sm md:text-xl tracking-widest text-gray-400 mb-8 max-w-2xl mx-auto">
           TOTAL WEALTH REDISTRIBUTED BACK TO THE PEOPLE
@@ -99,7 +107,6 @@
         <div class="w-full max-w-lg mx-auto bg-gray-900 h-1 mb-2 overflow-hidden">
           <div class="activity-line"></div>
         </div>
-        
       </div>
     </section>
 
@@ -117,14 +124,12 @@
     <section class="max-w-5xl mx-auto px-6 mb-16">
       <div class="border-4 border-black bg-white p-6 shadow-[8px_8px_0px_#111]">
         <div class="flex justify-between items-center mb-6 border-b-2 border-black pb-4">
-          <div class="font-machine text-2xl font-bold">The Ledger
+          <div class="font-machine text-2xl font-bold">The Ledger</div>
+          <a href="assets/financials/ledger.html" class="hover:underline hover:text-white decoration-4 underline-offset-4">
+            <span class="font-mono text-xs bg-black text-white px-2 py-1">OPEN RECORD</span>
+          </a>
         </div>
-	  <a href="assets/financials/ledger.html" class="hover:underline hover:text-white decoration-4 underline-offset-4">
-          <span class="font-mono text-xs bg-black text-white px-2 py-1">OPEN RECORD</span>
-	  </a>
-      </div>
 
-        
         <table class="w-full text-left font-mono text-sm">
           <thead>
             <tr class="text-gray-500">
@@ -139,7 +144,7 @@
               <td class="py-3 text-[#CD0000] font-bold">INITIAL SEED FUND</td>
               <td class="py-3 text-right pr-2">+$161.00</td>
             </tr>
-            </tbody>
+          </tbody>
         </table>
       </div>
     </section>
