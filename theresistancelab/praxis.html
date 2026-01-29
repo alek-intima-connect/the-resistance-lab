@@ -41,15 +41,20 @@
             padding: 40px 5%;
         }
 		.news-ticker {
-			display: flex;
+			background: #111;
+			color: var(--bg-paper);
+			padding: 10px 0;
 			overflow: hidden;
+			display: flex; /* Helps with alignment */
 		}
 
 		.ticker-content {
 			display: inline-block;
 			white-space: nowrap;
-			padding-left: 100%; /* Starts the text off-screen */
-			animation: scroll-left 40s linear infinite;
+			padding-left: 100%;
+			animation: scroll-left 60s linear infinite; /* Increased time for longer text */
+			font-family: 'Oswald', sans-serif;
+			text-transform: uppercase;
 		}
 
 		@keyframes scroll-left {
@@ -540,32 +545,35 @@
     <div class="save-btn" onclick="toggleSave(this, 'unique-id-1')">★</div>
 
 	<script>
-		// --- LIVE API FEED LOGIC ---
-		async function updateLiveTicker() {
+		// --- NEWS API LIVE FEED ---
+		async function fetchNews() {
 			const tickerContainer = document.getElementById('live-ticker');
-			const API_URL = "a83cbaa7e4d14e18bb80c81d6f51e68a"; // Replace with your actual API URL
+			const apiKey = "a83cbaa7e4d14e18bb80c81d6f51e68a";
+			// Using top technology headlines as an example
+			const url = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}`;
 
 			try {
-				const response = await fetch(API_URL);
+				const response = await fetch(url);
 				const data = await response.json();
 
-				// Let's assume your API returns an array of headlines or a price string
-				// Map the data into a single string separated by '///'
-				// Example for Crypto: `BTC: ${data.price} /// ETH: ${data.eth_price}`
-				
-				const formattedFeed = `/// SYSTEM STATUS: ONLINE /// ${data.some_value} /// DATA UPDATED: ${new Date().toLocaleTimeString()} ///`;
-				
-				tickerContainer.innerText = formattedFeed;
-				
+				if (data.status === "ok" && data.articles.length > 0) {
+					// Join the titles of the first 10 articles with the '///' separator
+					const headlines = data.articles.slice(0, 10).map(article => article.title.toUpperCase());
+					const tickerString = `/// LATEST INTEL /// ` + headlines.join(" /// ") + ` ///`;
+					
+					tickerContainer.innerText = tickerString;
+				} else {
+					tickerContainer.innerText = "/// NEWS FEED EMPTY /// STANDING BY ///";
+				}
 			} catch (error) {
-				tickerContainer.innerText = "/// CONNECTION ERROR: FEED OFFLINE /// RECONNECTING... ///";
-				console.error("Ticker Feed Error:", error);
+				tickerContainer.innerText = "/// CONNECTION ERROR: SECURE FEED OFFLINE ///";
+				console.error("NewsAPI Error:", error);
 			}
 		}
 
-		// Update the feed every 60 seconds
-		setInterval(updateLiveTicker, 60000);
-		updateLiveTicker(); // Initial call
+		// Update every 30 minutes (NewsAPI free tier has limits, don't ping it too often)
+		setInterval(fetchNews, 1800000);
+		fetchNews(); // Initial load
 	
 		// --- 1. UNIFIED FILTER & SEARCH LOGIC ---
 		const searchInput = document.getElementById('searchInput');
