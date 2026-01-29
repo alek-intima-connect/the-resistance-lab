@@ -1,488 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Praxis | The Resistance Lab</title>
-  <meta name="description" content="The central hub for The Resistance Lab. Access archives, tools, and mutual aid resources.">
-
-  <meta property="og:title" content="The Praxis | The Resistance Lab">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://www.intimaconnect.com/theresistancelab/praxis.html">
-  
-  <link rel="canonical" href="https://www.intimaconnect.com/theresistancelab/praxis.html" />
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
-
-  <base href="/theresistancelab/">
-
-  <style>
-    :root {
-      --theme-red: #CD0000;
-      --theme-paper: #F2F0E6;
-      --theme-black: #111111;
-    }
-
-    body {
-      background-color: var(--theme-paper);
-      color: var(--theme-black);
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    }
-
-    /* TYPOGRAPHY UTILS */
-    .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
-    .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
-    .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Dashboard | The Resistance Lab</title>
     
-    /* COLOR UTILS */
-    .text-red { color: var(--theme-red); }
-    .bg-red { background-color: var(--theme-red); }
-    .border-red { border-color: var(--theme-red); }
-    
-    /* COMPONENT STYLES */
-    .shadow-red { box-shadow: 6px 6px 0px var(--theme-red); }
-    
-    .module-card {
-      border: 2px solid var(--theme-black);
-      background: white;
-      transition: all 0.2s ease;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .module-card.shadow-hover:hover { 
-      transform: translate(-2px, -2px); 
-      box-shadow: 4px 4px 0px var(--theme-red); 
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
 
-    .module-header {
-      border-bottom: 2px solid var(--theme-black);
-      padding: 1rem;
-      background: #f8f8f8;
-    }
-    
-    /* Custom List Items */
-    .item-row {
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 0.5rem;
-      display: flex;
-      justify-content: space-between;
-    }
-    
-    /* Helper class for search filtering */
-    .hidden-card {
-        display: none !important;
-    }
-  </style>
+    <style>
+        /* --- CORE VARIABLES --- */
+        :root {
+            --bg-paper: #F2F0E6;
+            --text-main: #111111;
+            --text-muted: #555555;
+            --accent: #CD0000;
+            --border-thick: 3px solid #111;
+            --shadow-hard: 5px 5px 0px #000000;
+            --radius: 0px;
+        }
+
+        /* --- GLOBAL RESET --- */
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background-color: var(--bg-paper);
+            /* Noise Texture */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 5%;
+        }
+
+        /* --- HEADER & TICKER --- */
+        .news-ticker {
+            background: #111;
+            color: var(--bg-paper);
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: var(--border-thick);
+        }
+        .ticker-content { display: inline-block; animation: scroll-left 30s linear infinite; }
+        @keyframes scroll-left { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+
+        header {
+            margin-bottom: 50px;
+            border-bottom: var(--border-thick);
+            padding-bottom: 40px;
+        }
+        .breadcrumb {
+            font-family: 'Oswald', sans-serif; text-transform: uppercase;
+            font-size: 0.9rem; letter-spacing: 2px; color: var(--accent); font-weight: 700;
+        }
+        h1 {
+            font-family: 'Anton', sans-serif; font-size: clamp(3rem, 6vw, 5rem);
+            margin: 0; line-height: 1; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .mission-statement {
+            font-size: 1.1rem; max-width: 800px; color: var(--text-main);
+            border-left: 4px solid var(--accent); padding-left: 20px; margin-top: 10px;
+        }
+
+        /* --- CONTROLS --- */
+        .controls-area {
+            display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 40px;
+            align-items: center; justify-content: space-between;
+        }
+        .filter-container { display: flex; gap: 10px; flex-wrap: wrap; }
+        .filter-btn {
+            background: transparent; border: 2px solid #111; padding: 8px 16px;
+            font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase;
+            cursor: pointer; transition: all 0.2s; font-size: 0.9rem;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #111; color: #fff; transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0px var(--accent);
+        }
+        .search-input {
+            width: 300px; padding: 12px; border: 2px solid #111;
+            font-family: 'Oswald', sans-serif; font-size: 1rem; background: #fff;
+        }
+        .search-input:focus { outline: none; box-shadow: 4px 4px 0px var(--accent); }
+
+        /* --- BENTO GRID --- */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            grid-auto-flow: dense; /* Crucial for packing */
+            margin-bottom: 80px;
+        }
+
+        .resource-card {
+            background: #fff; border: var(--border-thick); padding: 25px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 280px; position: relative; transition: all 0.2s ease;
+            box-shadow: var(--shadow-hard);
+        }
+        .resource-card:hover {
+            transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--accent);
+        }
+
+        .card-tag {
+            font-family: 'Oswald', sans-serif; font-size: 0.75rem; text-transform: uppercase;
+            font-weight: 700; letter-spacing: 1px; color: var(--accent);
+            margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; display: inline-block;
+        }
+        .card-title {
+            font-family: 'Anton', sans-serif; font-size: 1.8rem; margin: 0 0 10px 0; line-height: 1.1;
+        }
+        .card-desc {
+            font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px; flex-grow: 1;
+        }
+        .card-link {
+            font-family: 'Oswald', sans-serif; text-decoration: none; color: #111;
+            font-weight: 700; text-transform: uppercase; border-bottom: 2px solid #111;
+            align-self: flex-start; transition: color 0.2s;
+        }
+        .card-link:hover { color: var(--accent); border-color: var(--accent); }
+
+        /* VARIANTS */
+        .card-wide { grid-column: span 2; }
+        
+        .card-tool { border-left: 10px solid var(--accent); }
+        
+        .card-video {
+            background-size: cover; background-position: center; border: var(--border-thick);
+            color: white; padding: 0; overflow: hidden;
+        }
+        .card-video::before {
+            content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%); z-index: 1;
+        }
+        .card-video .content-wrapper {
+            position: absolute; bottom: 0; left: 0; padding: 25px; z-index: 2; width: 100%;
+        }
+        .play-icon {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 4rem; color: var(--accent); z-index: 2; text-shadow: 2px 2px 0px #000;
+        }
+
+        .card-stat {
+            background: #111; color: #fff; text-align: center; justify-content: center; align-items: center;
+        }
+        .stat-val { font-family: 'Anton', sans-serif; font-size: 4.5rem; color: var(--accent); line-height: 1; }
+        .stat-label { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px; color: #888; }
+
+        .btn-dl {
+            background: #111; color: #fff; text-decoration: none; font-family: 'Oswald', sans-serif;
+            padding: 10px 15px; text-align: center; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.2s;
+        }
+        .btn-dl:hover { background: var(--accent); }
+
+        /* --- SUBMISSION FORM --- */
+        .submission-section {
+            background: #fff; border: var(--border-thick); padding: 40px;
+            box-shadow: 10px 10px 0px rgba(0,0,0,0.1);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .full-width { grid-column: span 2; }
+        
+        label {
+            font-family: 'Oswald', sans-serif; weight: 700; text-transform: uppercase;
+            font-size: 0.8rem; margin-bottom: 5px; color: var(--text-muted);
+        }
+        input, select, textarea {
+            padding: 15px; border: 2px solid #111; background: #f9f9f9;
+            font-family: 'Oswald', sans-serif; font-size: 1rem;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none; background: #fff; box-shadow: 5px 5px 0px var(--accent);
+        }
+        .btn-submit {
+            background: #111; color: #fff; border: none; padding: 15px;
+            font-family: 'Anton', sans-serif; font-size: 1.2rem; text-transform: uppercase;
+            cursor: pointer; transition: 0.2s; letter-spacing: 1px;
+        }
+        .btn-submit:hover { background: var(--accent); transform: translate(-2px, -2px); box-shadow: 4px 4px 0px #000; }
+
+        @media (max-width: 768px) {
+            .resource-grid { grid-template-columns: 1fr; }
+            .card-wide { grid-column: span 1; }
+            .form-grid { grid-template-columns: 1fr; }
+            .full-width { grid-column: span 1; }
+            .controls-area { flex-direction: column; align-items: stretch; }
+            .search-input { width: 100%; }
+        }
+		/* Bookmark Icon Style */
+		.save-btn {
+			position: absolute;
+			top: 15px;
+			right: 15px;
+			font-size: 1.5rem;
+			color: #ccc;
+			cursor: pointer;
+			z-index: 10;
+			transition: color 0.2s;
+			user-select: none;
+		}
+		.save-btn:hover { color: #666; }
+		.save-btn.saved { color: var(--accent); text-shadow: 0 0 5px rgba(205,0,0,0.5); 
+		}
+    </style>
 </head>
 
-<body class="antialiased flex flex-col min-h-screen">
+</head>
 
-  <header class="border-b-4 border-black sticky top-0 z-50 bg-[#F2F0E6] opacity-95">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-3">
-      <div class="flex items-center gap-3">
-        <svg class="w-8 h-8" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="6">
-          <polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
-        </svg>
-        <a href="index.html" class="font-shout text-2xl tracking-wide text-black decoration-transparent">The Resistance Lab</a>
-      </div>
-      
-      <nav class="hidden md:flex gap-8 font-machine text-sm font-bold text-gray-800">
-        <a href="canon/canon.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">The Canon</a>
-        <a href="reclamation.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">Mutual Aid</a>
-        <a href="praxis.html" class="hover:text-[#CD0000] hover:underline decoration-4 underline-offset-4 transition-all">The United Front</a>
-      </nav>
-    </div>
-  </header>
+<body class="antialiased flex flex-col min-h-screen pb-24 md:pb-0">
 
-  <main class="flex-grow">
+	<nav class="site-nav" style="background: var(--bg-paper); border-bottom: var(--border-thick); padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;">
+		<a href="#" class="nav-logo" style="display: flex; align-items: center; gap: 10px; font-family: 'Anton', sans-serif; text-transform: uppercase; font-size: 1.5rem; text-decoration: none; color: var(--text-main);">
+			<svg width="30" height="30" viewBox="0 0 100 100" fill="none" stroke="#CD0000" stroke-width="8">
+				<polygon points="50,5 61,35 95,35 68,55 79,85 50,65 21,85 32,55 5,35 39,35" stroke-linejoin="round"/>
+			</svg>
+			The Resistance Lab
+		</a>
+		<div class="nav-links" style="display: flex; gap: 25px;">
+			<style>
+				.nav-link { font-family: 'Oswald', sans-serif; text-decoration: none; color: var(--text-main); font-weight: 700; text-transform: uppercase; font-size: 0.9rem; transition: 0.2s; }
+				.nav-link:hover { color: var(--accent); text-decoration: underline; text-underline-offset: 5px; }
+				@media (max-width: 768px) { .nav-links { display: none; } }
+			</style>
+			<a href="canon/canon.html" class="nav-link">The Canon</a>
+			<a href="reclamation.html" class="nav-link">Mutual Aid</a>
+			<a href="praxis.html" class="nav-link">United Front</a>
+		</div>
+	</nav>
 
-    <section class="border-b-2 border-black bg-[#F2F0E6]/80 backdrop-blur-sm">
-      <div class="max-w-7xl mx-auto px-6 py-12">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          
-          <div>
-            <p class="font-machine text-gray-500 mb-2 tracking-widest">OUR NETWORK</p>
-            <h1 class="font-shout text-5xl md:text-6xl leading-none">The Praxis</h1>
-            <p class="font-theory text-lg mt-4 max-w-2xl text-gray-800">
-              The central nervous system of our society. Access tools, archives, and support structures to build your communities' autonomy.
-            </p>
-          </div>
-          
-          <div class="border-2 border-black p-4 bg-[#F2F0E6] font-mono text-xs w-full md:w-auto shadow-sm">
-            <div class="flex justify-between gap-8 border-b border-gray-400 pb-2 mb-2">
-              <span class="text-gray-500">SYSTEM STATUS</span>
-              <span class="text-[#CD0000] font-bold animate-pulse">● ONLINE</span>
+	<div class="news-ticker">
+		<div class="ticker-content">
+			/// SYSTEM ALERT: Grid Stable /// NEW UPLOAD: RIOT MEDICINE /// BITCOIN: $98,420 /// DASHBOARD STATUS: Active /// NOSTR RELAY: Online ...
+		</div>
+	</div>
+
+	<header class="container" style="margin-top: 40px; border-bottom: var(--border-thick); padding-bottom: 40px;">
+		<div class="breadcrumb" style="font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; color: var(--accent); font-weight: 700;">Resource Dashboard / The Resistance Lab</div>
+		<h1 style="font-family: 'Anton', sans-serif; font-size: clamp(3rem, 6vw, 5rem); margin: 0; line-height: 1; text-transform: uppercase; letter-spacing: 1px;">Access. Educate. Liberate.</h1>
+		<div class="mission-statement" style="font-size: 1.1rem; max-width: 800px; color: var(--text-main); border-left: 4px solid var(--accent); padding-left: 20px; margin-top: 10px;">
+			We are transitioning from the Old World to the New. This is the central repository for tools, maps, and protocols necessary for an effective resistance. 
+		</div>
+	</header>
+
+        <div class="controls-area">
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Systems</button>
+                <button class="filter-btn" data-filter="Toolkit">Toolkits</button>
+                <button class="filter-btn" data-filter="Intel">Intel</button>
+                <button class="filter-btn" data-filter="Hardware">Hardware</button>
+                <button class="filter-btn" data-filter="Health">Bio/Health</button>
             </div>
-            <div class="flex justify-between gap-8">
-              <span class="text-gray-500">LAST SYNC</span>
-              <span id="live-date" class="font-mono">LOADING...</span>
+            <div class="search-bar">
+                <input type="text" class="search-input" id="searchInput" placeholder="SEARCH DATABASE...">
+            </div>
+        </div>
+
+	<div class="resource-grid">
+			
+		<div class="resource-card card-wide" style="border-left: 10px solid #CD0000;">
+			<div>
+				<span class="card-tag">Manual / Essential</span>
+				<h2 class="card-title">Riot Medicine</h2>
+				<p class="card-desc">The definitive guide for medics in an adversarial environment. Covers chemical weapons, blast injuries, and ballistic trauma. 450+ pages.</p>
+			</div>
+			<div style="display:flex; gap:15px; margin-top:15px;">
+				<a href="https://riotmedicine.net/downloads" target="_blank" class="btn-dl">Download PDF</a>
+				<a href="https://riotmedicine.net/" target="_blank" class="card-link" style="align-self:center;">Read Online &rarr;</a>
+			</div>
+		</div>
+
+		<div class="resource-card">
+			<div>
+				<span class="card-tag">Protocol / Chem</span>
+				<h2 class="card-title">Physicians for Human Rights Chem Advice</h2>
+				<p class="card-desc">Preparing for, Protecting Against, and Treating Tear Gas and Other Chemical Irritant Exposure: A Protestor’s Guide</p>
+			</div>
+			<a href="https://phr.org/our-work/resources/preparing-for-protecting-against-and-treating-tear-gas-and-other-chemical-irritant-exposure-a-protesters-guide/" target="_blank" class="card-link">View Protocols &rarr;</a>
+		</div>
+
+		<div class="resource-card card-video" style="background-image: url('https://images.unsplash.com/photo-1555862103-6c7225105f27?auto=format&fit=crop&w=800&q=80');">
+			<div class="play-icon">▶</div>
+			<div class="content-wrapper">
+				<span class="card-tag" style="color: #fff; border-color: #555;">Video Course</span>
+				<h2 class="card-title">Bridge Training</h2>
+				<p style="color: #ccc; font-size: 0.9rem;">Do No Harm Coalition • For RNs/EMTs transitioning to street ops.</p>
+			</div>
+			<a href="https://www.donoharmcoalition.org/street-medic-training.html" target="_blank" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:5;"></a>
+		</div>
+
+		<div class="resource-card">
+			<div>
+				<span class="card-tag">Intel</span>
+				<h2 class="card-title">Green & Black Cross</h2>
+				<p class="card-desc">UK-based intel on how medical aid intersects with state surveillance and arrest risks.</p>
+			</div>
+			<a href="https://greenandblackcross.org/guides/" target="_blank" class="card-link">Read Intel &rarr;</a>
+		</div>
+
+		<div class="resource-card">
+			<div>
+				<span class="card-tag">Protocol / Medic</span>
+				<h2 class="card-title">Chicago Action Medical</h2>
+				<p class="card-desc">STREET MEDIC HANDBOOK</p>
+			</div>
+			<a href="https://mutualaiddisasterrelief.org/wp-content/uploads/2020/04/kupdf.net_street-medic-handbook.pdf" target="_blank" class="card-link">Enter Site &rarr;</a>
+		</div>
+
+            <div class="resource-card card-wide">
+                <div>
+                    <span class="card-tag">Journalism / Intel</span>
+                    <h2 class="card-title">Rest of World</h2>
+                    <p class="card-desc">Reporting on the "New World" of tech in places like Nepal, Lagos, and Seoul. See the future before it hits the West.</p>
+                </div>
+                <a href="https://restofworld.org" target="_blank" class="card-link">Access Intel &rarr;</a>
             </div>
 
-            <script>
-              const dateOptions = { day: 'numeric', month: 'short', year: 'numeric' };
-              document.getElementById('live-date').innerText = new Date().toLocaleDateString('en-GB', dateOptions).toUpperCase();
-            </script>
-          </div>
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Case Study</span>
+                    <h2 class="card-title">The Seoul Shift</h2>
+                    <p class="card-desc">Analyzing rapid infrastructure modernization and cultural export in South Korea.</p>
+                </div>
+                <a href="#" class="card-link">Read Analysis &rarr;</a>
+            </div>
 
-        </div>
-      </div>
-    </section>
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Hardware / Comms</span>
+                    <h2 class="card-title">Global WebSDR</h2>
+                    <p class="card-desc">Listen to shortwave radio frequencies globally via the browser. Monitor traffic without a physical radio.</p>
+                </div>
+                <a href="http://websdr.org/" target="_blank" class="card-link">Tune Frequency &rarr;</a>
+            </div>
 
-    <section class="max-w-7xl mx-auto px-6 -mt-8 relative z-10">
-      <div class="bg-black p-2 shadow-red flex gap-2">
-        <input type="text" id="searchInput" placeholder="Search the archives, tools, or resources..." class="w-full bg-gray-900 text-white p-4 font-mono focus:outline-none focus:bg-gray-800 placeholder-gray-500 border border-transparent focus:border-[#CD0000]">
-        
-        <button class="bg-[#CD0000] text-white px-8 font-machine tracking-widest hover:bg-white hover:text-black transition-colors border border-[#CD0000] font-bold">
-          SEARCH
-        </button>
-      </div>
-    </section>
+            <div class="resource-card card-tool">
+                <div>
+                    <span class="card-tag">AI / Sovereign</span>
+                    <h2 class="card-title">Ollama</h2>
+                    <p class="card-desc">Run Large Language Models locally. No censorship, no data tracking.</p>
+                </div>
+                <a href="https://ollama.com/" target="_blank" class="btn-dl">Get AI</a>
+            </div>
 
-    <section class="max-w-7xl mx-auto px-6 py-16">
-      <div id="cardGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">OS / Privacy</span>
+                    <h2 class="card-title">Tails OS</h2>
+                    <p class="card-desc">The Amnesic Incognito Live System. Runs from USB. Leaves no trace.</p>
+                </div>
+                <a href="https://tails.boum.org/" target="_blank" class="card-link">Download IMG &rarr;</a>
+            </div>
 
-        <div class="module-card shadow-hover group cursor-pointer" data-tags="pdf theory history canon">
-          <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl">I. The Repository</h3>
-            <span class="text-[#CD0000] font-bold text-xl">1</span>
-          </div>
-          <div class="p-6 flex-grow">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              The foundational texts and theory of the movement. Curated PDFs, historical analysis, and the official Codex.
-            </p>
-            <ul class="font-machine text-sm space-y-3">
-              <li class="item-row hover:text-[#CD0000]">
-                <span>The Four Laws (Expanded)</span> <span>PDF</span>
-              </li>
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Theory of Reclamation</span> <span>EPUB</span>
-              </li>
-              <li class="flex justify-between hover:text-[#CD0000]">
-                <span>Historical Materialism 101</span> <span>MP3</span>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div class="resource-card card-tool">
+                <div>
+                    <span class="card-tag">Toolkit / Repair</span>
+                    <h2 class="card-title">Repair Manifesto</h2>
+                    <p class="card-desc">Don't replace it. Fix it. Schematics and guides for every piece of tech you own.</p>
+                </div>
+                <a href="https://www.ifixit.com/Right-to-Repair" target="_blank" class="btn-dl">Get Manuals</a>
+            </div>
 
-        <div class="module-card shadow-hover group h-full bg-white" data-tags="tools map security ice digital">
-          <div class="module-header flex justify-between items-center ">
-            <h3 class="font-shout text-xl flex items-center gap-2">
-              II. The Toolkit
-              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
-            </h3>
-            <span class="text-[#CD0000] font-bold text-xl">2</span>
-          </div>
-          <div class="p-6 flex flex-col">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              Essential digital defense tools. Monitor activity, secure your communications, and access databases.
-            </p>
-            <ul class="font-machine text-sm space-y-3">
-              <li class="item-row hover:text-[#CD0000] transition-colors">
-                <a href="https://icemap.dev" target="_blank" class="flex justify-between w-full items-center">
-                  <span>ICE Map (Monitoring)</span> 
-                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">LIVE MAP</span>
-                </a>
-              </li>
-              <li class="item-row hover:text-[#CD0000] transition-colors">
-                <a href="https://icelist.is" target="_blank" class="flex justify-between w-full items-center">
-                  <span>ICE List (Database)</span> 
-                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">ACCESS</span>
-                </a>
-              </li>
-              <li class="item-row hover:text-[#CD0000] transition-colors">
-                <a href="https://ssd.eff.org/" target="_blank" class="flex justify-between w-full items-center">
-                  <span>Surveillance Defense</span> 
-                  <span class="text-[#CD0000] font-bold text-xs border border-[#CD0000] px-1">GUIDE</span>
-                </a>
-              </li>
-              <li class="pt-4 mt-2 border-t border-gray-200">
-                <a href="toolkit.html" class="flex justify-between w-full hover:translate-x-1 transition-transform font-bold">
-                  <span>BROWSE FULL TOOLKIT</span> 
-                  <span>➜</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Bio-Hacking</span>
+                    <h2 class="card-title">Huberman Lab</h2>
+                    <p class="card-desc">Scientific protocols for dopamine, sleep, and focus control.</p>
+                </div>
+                <a href="https://www.hubermanlab.com/" target="_blank" class="card-link">View Protocol &rarr;</a>
+            </div>
 
-        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="money food help mutual aid">
-          <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl flex items-center gap-2">
-              III. The Commons
-              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
-            </h3>
-            <span class="text-[#CD0000] font-bold text-xl">3</span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              Resource redistribution. Funding for incarcerated comrades and logistics for survival.
-            </p>
-            <ul class="font-machine text-sm space-y-5">
-              <li class="flex flex-col gap-1 group/fund item-row hover:text-[#CD0000] transition-colors pt-2">
-                <a href="https://www.nlg.org/massdefenseprogram/" target="_blank" class="flex justify-between w-full items-center group/link">
-                  <div class="flex justify-between items-end">
-                    <div class="flex flex-col">
-                      <span>BAIL AND DEFENSE FUND</span>
-                      <span class="font-sans text-[10px] text-gray-400 normal-case">www.nlg.org/massdefenseprogram</span>
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Comms / Protocol</span>
+                    <h2 class="card-title">Nostr</h2>
+                    <p class="card-desc">Censorship-resistant global social network. You own your keys.</p>
+                </div>
+                <a href="https://nostr.com/" target="_blank" class="card-link">Generate Keys &rarr;</a>
+            </div>
+			
+            <div class="resource-card card-wide">
+                <div>
+                    <span class="card-tag">Toolkit / Offline</span>
+                    <h2 class="card-title">Kiwix Archive</h2>
+                    <p class="card-desc">Store the internet on a flash drive. Download Wikipedia, TED Talks, and StackExchange for offline access.</p>
+                </div>
+                <a href="https://kiwix.org/" target="_blank" class="card-link">Download ZIM Files &rarr;</a>
+            </div>
+
+            <div class="resource-card card-tool">
+                <div>
+                    <span class="card-tag">Toolkit</span>
+                    <h2 class="card-title">Privacy Shield v2</h2>
+                    <p class="card-desc">Download the configuration file to secure your browser data.</p>
+                </div>
+                <a href="#" class="btn-dl">Download .Zip</a>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Hardware</span>
+                    <h2 class="card-title">Meshtastic</h2>
+                    <p class="card-desc">Off-grid LoRa communication network. No cell towers required.</p>
+                </div>
+                <a href="https://meshtastic.org/" target="_blank" class="card-link">View Docs &rarr;</a>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Toolkit</span>
+                    <h2 class="card-title">Digital Sov.</h2>
+                    <p class="card-desc">Guides on data privacy and protecting your digital footprint.</p>
+                </div>
+                <a href="#" class="card-link">Access Tools &rarr;</a>
+            </div>
+
+            <div class="resource-card card-wide" style="background: #f4f4f4;">
+                <div>
+                    <span class="card-tag" style="color: var(--accent);">Restricted Access</span>
+                    <h2 class="card-title">Anna’s Archive</h2>
+                    <p class="card-desc">The largest shadow library in human history. Millions of books and papers. Knowledge is a human right.</p>
+                </div>
+                <a href="https://annas-archive.org/" target="_blank" class="card-link" style="color: var(--accent); border-color: var(--accent);">Enter Library &rarr;</a>
+            </div>
+
+            <div class="resource-card" style="background: linear-gradient(135deg, #FFF8E1 0%, #F2F0E6 100%);">
+                <div>
+                    <span class="card-tag" style="color: #5D4037;">History / Food</span>
+                    <h2 class="card-title" style="font-family: 'Georgia', serif; font-style: italic;">Sumerian Diet</h2>
+                    <p class="card-desc" style="color: #5D4037;">Barley cakes, roasted onions, chickpeas. The original sustainable diet.</p>
+                </div>
+                <a href="#" class="card-link" style="color: #5D4037; border-color: #5D4037;">Get Recipes &rarr;</a>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Community</span>
+                    <h2 class="card-title">Global Networks</h2>
+                    <p class="card-desc">Connect with like-minded builders in Nepal, Estonia, and beyond.</p>
+                </div>
+                <a href="#" class="card-link">View Directory &rarr;</a>
+            </div>
+
+            <div class="resource-card card-video" style="background-image: url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80');">
+                <div class="play-icon">▶</div>
+                <div class="content-wrapper">
+                    <span class="card-tag" style="color: #fff; border-color: #555;">Documentary</span>
+                    <h2 class="card-title">Coding the Future</h2>
+                    <p style="color: #ccc; font-size: 0.9rem;">12 min watch • Seoul</p>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Health</span>
+                    <h2 class="card-title">Modern Wellness</h2>
+                    <p class="card-desc">Mental health resources for high-stress environments.</p>
+                </div>
+                <a href="#" class="card-link">View Resources &rarr;</a>
+            </div>
+
+            <div class="resource-card card-stat">
+                <div>
+                    <div class="stat-label">Network Growth</div>
+                    <div class="stat-val">42%</div>
+                    <p style="color: #666; font-size: 0.8rem; margin:0;">Since Last Cycle</p>
+                </div>
+            </div>
+
+            <div class="resource-card">
+                <div>
+                    <span class="card-tag">Education</span>
+                    <h2 class="card-title">The New Economy</h2>
+                    <p class="card-desc">Financial literacy for the modern era. Crypto & Assets.</p>
+                </div>
+                <a href="#" class="card-link">Start Learning &rarr;</a>
+            </div>
+
+            <div class="resource-card" style="background: #111; color: #fff;">
+                <div>
+                    <span class="card-tag" style="color: var(--accent); border-color: #333;">Support</span>
+                    <h2 class="card-title">Fuel the Mission</h2>
+                    <p class="card-desc" style="color: #888;">We operate outside traditional banking.</p>
+                    <div style="background:#222; padding:10px; border:1px solid #333; font-family:monospace; font-size:0.8rem; cursor:pointer;" onclick="copyWallet(this)">
+                        <span class="copy-text">0x71C...9A23 (CLICK TO COPY)</span>
                     </div>
-                    <span class="text-xs bg-black text-white px-2 py-0.5 hover:bg-[#CD0000] transition-colors">CONTRIBUTE</span>
-                  </div>
-                </a>
-                <div class="w-full bg-gray-200 h-3 border border-black relative mt-1">
-                  <div class="bg-[#CD0000] h-full" style="width: 0%"></div>
-                  <span class="absolute top-0 left-1 text-[9px] font-mono leading-3 text-white mix-blend-difference">STATUS: AWAITING FUNDS</span>
                 </div>
-              </li>
-              
-              <li class="item-row hover:text-[#CD0000] transition-colors pt-2">
-                <a href="https://www.findhelp.org/" target="_blank" class="flex justify-between w-full items-center group/link">
-                  <div class="flex flex-col">
-                    <span>Supply Lines (Food/Med)</span>
-                    <span class="font-sans text-[10px] text-gray-400 normal-case">www.findhelp.org</span>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    <span class="border border-black px-1 text-xs group-hover/link:bg-black group-hover/link:text-white transition-colors">LOCATE</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-            <div class="mt-auto pt-4 text-center">
-               <p class="font-theory italic text-xs text-gray-400">
-                 "From each according to ability,<br>to each according to need."
-               </p>
             </div>
-          </div>
-        </div>
 
-        <div class="module-card shadow-hover group h-full bg-white flex flex-col relative overflow-hidden" data-tags="contact comms pgp mesh map">
-          <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.8\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');"></div>
-          <div class="module-header flex justify-between items-center relative z-10">
-            <h3 class="font-shout text-xl flex items-center gap-2">
-                IV. The Switchboard
-                <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
-            </h3>
-            <span class="text-[#CD0000] font-bold text-xl">4</span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col relative z-10">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              Connect with our network. Secure channels and node maps.
-            </p>
-            <div class="grid grid-cols-1 gap-3">
-              <a href="https://meshmap.net" target="_blank" class="group/btn flex items-center justify-between w-full border-2 border-black p-3 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_#000]">
-                <div class="flex items-center gap-3">
-                  <div class="bg-black text-white w-8 h-8 flex items-center justify-center font-shout group-hover/btn:bg-white group-hover/btn:text-black transition-colors">A</div>
-                  <span class="font-machine tracking-wider text-sm">OPEN SOURCE CHANNELS</span>
+        </div> <div class="submission-section">
+            <div class="form-header">
+                <h2>Contribute to the Archive</h2>
+                <p style="color: var(--text-muted);">The archive is living. Submit a tool, article, or resource for verification.</p>
+            </div>
+            <form class="form-grid" id="resourceForm">
+                <div class="form-group">
+                    <label>Resource Title</label>
+                    <input type="text" name="title" placeholder="e.g. Open Source Seeds" required>
                 </div>
-                <span class="text-xs font-mono opacity-50 group-hover/btn:opacity-100">[MESH MAP]</span>
-              </a>
-              <button class="group/btn flex items-center justify-between w-full border-2 border-black p-3 hover:bg-black hover:text-white transition-all shadow-[2px_2px_0px_#000]">
-                <div class="flex items-center gap-3">
-                  <div class="bg-black text-white w-8 h-8 flex items-center justify-center font-shout group-hover/btn:bg-white group-hover/btn:text-black transition-colors">B</div>
-                  <span class="font-machine tracking-wider text-sm">LOCATE ACTIVE COMMUNITIES</span>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category">
+                        <option>Select Category...</option>
+                        <option>Toolkit</option>
+                        <option>Intel</option>
+                        <option>Hardware</option>
+                        <option>Health</option>
+                    </select>
                 </div>
-                <span class="text-xs font-mono opacity-50 group-hover/btn:opacity-100">[COMING]</span>
-              </button>
-              <button onclick="copyPGP(this, 'https://pgpkeygen.com/')" class="relative overflow-hidden group/btn flex items-center justify-between w-full border-2 border-dashed border-gray-400 p-3 hover:border-solid hover:border-[#CD0000] hover:text-[#CD0000] transition-all bg-gray-50">
-                <div class="flex items-center gap-3">
-                  <svg class="w-8 h-8 opacity-40 group-hover/btn:opacity-100 transition-opacity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 12c0-3 2.5-5.5 5.5-5.5S23 9 23 12M12 12c0 3-2.5 5.5-5.5 5.5S1 15 1 12M12 12V2m0 10v10"/></svg>
-                  <div class="flex flex-col text-left">
-                      <span class="font-machine tracking-wider text-sm text-black group-hover/btn:text-[#CD0000]">PGP KEY</span>
-                      <span id="pgp-feedback" class="font-mono text-[10px] text-gray-500">KEY ID: 0x93FA...</span>
-                  </div>
+                <div class="form-group full-width">
+                    <label>Source URL</label>
+                    <input type="url" name="url" placeholder="https://..." required>
                 </div>
-                <span class="font-shout text-4xl text-[#CD0000] opacity-0 group-hover/btn:opacity-20 absolute right-4 -rotate-12 transition-opacity">COPY</span>
-              </button>
-            </div>
-          </div>
+                <div class="form-group full-width">
+                    <label>Why is this necessary?</label>
+                    <textarea name="reason" rows="4" placeholder="Briefly explain the utility..."></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <button type="submit" class="btn-submit">Submit Contribution</button>
+                </div>
+            </form>
         </div>
 
-        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="news substack letters updates">
-          <div class="module-header flex justify-between items-center">
-            <h3 class="font-shout text-xl flex items-center gap-2">
-              V. Lab Letters
-              <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">UPDATED</span>
-            </h3>
-            <span class="text-[#CD0000] font-bold text-xl">5</span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              Dispatches from the front lines. Theory, analysis, and encrypted updates.
-            </p>
-            <ul class="font-machine text-sm space-y-3 mb-6">
-              <li class="item-row border-b border-[#CD0000]/30 pb-2">
-                <a href="https://theresistancelab.substack.com/p/latest" target="_blank" class="w-full group/item">
-                  <div class="flex justify-between items-center text-[#CD0000] font-bold">
-                    <span>2601-04: The Architecture of Ashes</span>
-                    <span class="bg-[#CD0000] text-white px-1 text-[10px]">NEW</span>
-                  </div>
-                  <span class="text-xs text-gray-500 font-sans normal-case block mt-1 group-hover/item:text-black transition-colors">
-                    Analysis of the collapse. How we build on the ruins...
-                  </span>
-                </a>
-              </li>
-              <li class="item-row hover:text-[#CD0000] transition-colors">
-                <a href="https://theresistancelab.substack.com" target="_blank" class="flex justify-between w-full">
-                  <span>2601-03: Iran's Struggle</span> <span class="text-gray-400 text-xs">ARCHIVE</span>
-                </a>
-              </li>
-            </ul>
-            <div class="mt-auto pt-4 border-t border-gray-200">
-              <a href="https://theresistancelab.substack.com" target="_blank" class="block w-full text-center border-2 border-black py-2 font-machine uppercase hover:bg-black hover:text-white transition-all text-sm tracking-widest font-bold">
-                Join the Mailing List
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="posters stickers art download">
-          <div class="module-header flex justify-between items-center bg-gray-100">
-            <h3 class="font-shout text-xl text-gray-500">
-                VI. Agitprop
-				<span class="bg-[#111] text-white font-machine text-xs px-2 py-1">COMING</span>
-            </h3>
-            <span class="text-gray-400 font-bold text-xl">6</span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col justify-center text-center opacity-80 hover:opacity-100 transition-opacity">
-            <svg class="w-12 h-12 mx-auto mb-4 text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
-            <h4 class="font-machine text-lg">Visual Materials</h4>
-            <p class="font-theory text-xs mt-2 mb-4">Posters, Stickers, and Stencils for local distribution.</p>
-            
-            <a href="#" class="border border-black px-4 py-2 text-xs font-mono uppercase hover:bg-black hover:text-white transition-colors">
-                DOWNLOAD PACK [Coming Soon]
-            </a>
-          </div>
-        </div>
-
-        <div class="module-card shadow-hover group h-full bg-white flex flex-col" data-tags="education socialism study teach discord">
-          <div class="module-header flex justify-between items-center bg-gray-900 text-white">
-            <h3 class="font-shout text-xl">
-                VII. The Sanctuary
-			    <span class="bg-[#CD0000] text-white font-machine text-xs px-2 py-1">NEW</span>
-            </h3>
-            <span class="text-[#CD0000] font-bold text-xl">7</span>
-          </div>
-          <div class="p-6 flex-grow flex flex-col">
-            <p class="font-theory text-sm text-gray-600 mb-6">
-              "The Digital Sanctuary." A secure place to learn and organize. To my Proletariat of the world, we shall unite!
-            </p>
-            
-            <div class="flex items-center gap-2 mb-4 bg-gray-100 p-2 rounded border border-gray-300">
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="font-mono text-xs text-gray-600">ACTIVE MEMBERS: 7</span>
-            </div>
-
-            <ul class="font-machine text-sm space-y-3">
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Week 1: Marx & Engels</span> <span class="text-gray-400">READING RAINBOW</span>
-              </li>
-              <li class="item-row hover:text-[#CD0000]">
-                <span>Week 2: Das Kapital</span> <span class="text-gray-400">READING RAINBOW</span>
-              </li>
-            </ul>
-            <div class="mt-auto pt-4">
-               <a href="https://discord.gg/y3qswCWYjm" target="_blank" class="block w-full text-center bg-black text-white py-2 text-xs font-machine hover:bg-[#CD0000] transition-colors">
-                   JOIN THE DISCORD
-               </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="module-card text-black flex flex-col justify-center items-center text-center p-8 cursor-pointer transition-colors border-none shadow-red bg-white relative overflow-hidden group">
-          <div class="absolute top-0 left-0 w-full h-2"></div>
-          <h3 class="font-shout text-3xl mb-3 mt-2">Strengthen Our Collective</h3>
-          <p class="font-theory text-sm mb-8 opacity-80 max-w-xs mx-auto leading-relaxed">
-            Shared knowledge is power. Do you have a tool or text to add?
-          </p>
-          <a href="mailto:intimaconnect@gmail.com?subject=Resource%20Contribution%20For%20The%20Dashboard&body=MY%20RESOURCE%0D%0A--------------------------------%0D%0AName%20of%20Resource%3A%20%0D%0A%0D%0AType%20(Tool%2FText%2FService)%3A%20%0D%0A%0D%0ALocation%20or%20URL%3A%20%0D%0A%0D%0ABrief%20Description%3A%20%0D%0A" 
-             class="font-machine border-2 border-black px-8 py-3 bg-[#F2F0E6] hover:bg-[#CD0000] hover:text-white hover:-translate-y-1 transition-all text-sm tracking-widest uppercase font-bold shadow-sm" 
-             class="font-machine border-2 border-black px-8 py-3 bg-[#F2F0E6] hover:bg-[#CD0000] hover:text-white hover:-translate-y-1 transition-all text-sm tracking-widest uppercase font-bold shadow-sm">
-            Make a Contribution ➜
-          </a>
-        </div>
-    
-      </div>
-    </section>
-    
-  </main>
-
-  <footer class="bg-gray-900 text-gray-200 py-4 border-t-4 border-red">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-center md:text-left px-6">
-      <div class="mb-6 md:mb-0">
-        <span class="font-shout text-3xl tracking-wide uppercase block mb-2">The Resistance Lab</span>
-        <p class="font-theory text-sm italic text-gray-400">Novum Mundum Vetere Pasce</p>
-      </div>
-      <div class="flex flex-col items-center md:items-end">
-        <div class="flex space-x-6 font-machine text-sm tracking-widest mb-4 font-bold">
-          <a href="#" class="hover:text-red transition-colors">Source Code</a>
-          <a href="#" class="hover:text-red transition-colors">Doctrine_v1.pdf</a>
-        </div>
-        <span class="text-red font-shout px-3 py-1 text-xs tracking-wider">EST. 2026 // DECENTRALIZED</span>
-      </div>
     </div>
-  </footer>
 
-  <button onclick="copyLink()" id="shareBtn" class="fixed bottom-6 right-6 z-50 bg-white text-black font-machine border-2 border-black px-6 py-3 shadow-[4px_4px_0px_#CD0000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center gap-3 group">
-    <svg class="w-5 h-5 text-[#CD0000]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-    <span id="shareText" class="tracking-widest font-bold">INVITE FRIENDS</span>
-  </button>
+    <div class="save-btn" onclick="toggleSave(this, 'unique-id-1')">★</div>
 
-  <script>
-    // SHARE BUTTON LOGIC
-    function copyLink() {
-      navigator.clipboard.writeText(window.location.href);
-      const btnText = document.getElementById('shareText');
-      const originalText = btnText.innerText;
-      btnText.innerText = "LINK COPIED";
-      setTimeout(() => { btnText.innerText = originalText; }, 3000);
-    }
+	<script>
+		// 1. IMPROVED FILTER LOGIC (Case Insensitive & Exact Match)
+		const btns = document.querySelectorAll('.filter-btn');
+		btns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				btns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				
+				const filter = btn.getAttribute('data-filter').toLowerCase();
+				const cards = document.querySelectorAll('.resource-card');
+				
+				cards.forEach(card => {
+					const tag = card.querySelector('.card-tag') ? card.querySelector('.card-tag').innerText.toLowerCase() : '';
+					// Checks if "all" is selected OR if the tag contains the filter keyword
+					if (filter === 'all' || tag.includes(filter)) {
+						card.style.display = 'flex';
+					} else {
+						card.style.display = 'none';
+					}
+				});
+			});
+		});
 
-    // PGP BUTTON LOGIC
-    function copyPGP(btn, key) {
-      navigator.clipboard.writeText(key);
-      const feedback = btn.querySelector('#pgp-feedback');
-      const originalText = feedback.innerText;
-      feedback.innerText = "// COPIED //";
-      feedback.classList.add("text-[#CD0000]", "font-bold");
-      setTimeout(() => {
-        feedback.innerText = originalText;
-        feedback.classList.remove("text-[#CD0000]", "font-bold");
-      }, 2000);
-    }
+		// 2. PERSISTENT SAVED STATE (Local Storage)
+		function toggleSave(element, id) {
+			element.classList.toggle('saved');
+			const isSaved = element.classList.contains('saved');
+			localStorage.setItem(`saved_resource_${id}`, isSaved);
+			
+			// Brief feedback haptic/visual
+			if(isSaved) {
+				console.log(`Resource ${id} cached to local drive.`);
+			}
+		}
 
-    // SEARCH BAR LOGIC
-    const searchInput = document.getElementById('searchInput');
-    const cards = document.querySelectorAll('.module-card');
-
-    searchInput.addEventListener('keyup', (e) => {
-      const term = e.target.value.toLowerCase();
-
-      cards.forEach(card => {
-        const text = card.textContent.toLowerCase();
-        const tags = card.getAttribute('data-tags') || "";
-        
-        if (text.includes(term) || tags.includes(term)) {
-          card.classList.remove('hidden-card');
-        } else {
-          card.classList.add('hidden-card');
+		// 3. INITIALIZE SAVED STATES ON LOAD
+		document.addEventListener('DOMContentLoaded', () => {
+			document.querySelectorAll('.save-btn').forEach((btn, index) => {
+				if (localStorage.getItem(`saved_resource_id-${index}`) === 'true') {
+					btn.classList.add('saved');
+				}
+			});
+		});
+        // 1. WALLET COPY
+        function copyWallet(element) {
+            navigator.clipboard.writeText("0x71C7656EC7ab88b098defB751B7401B5f6d89A23");
+            const span = element.querySelector('.copy-text');
+            const originalText = span.innerText;
+            span.innerText = "COPIED!";
+            span.style.color = "#CD0000";
+            setTimeout(() => {
+                span.innerText = originalText;
+                span.style.color = "#fff";
+            }, 2000);
         }
-      });
-    });
-  </script>
 
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
+        // 2. SEARCH
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const val = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.resource-card');
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(val) ? 'flex' : 'none';
+            });
+        });
 
+        // 3. FILTER
+        const btns = document.querySelectorAll('.filter-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+                const cards = document.querySelectorAll('.resource-card');
+                cards.forEach(card => {
+                    const tag = card.querySelector('.card-tag') ? card.querySelector('.card-tag').innerText : '';
+                    const match = filter === 'all' || tag.includes(filter);
+                    card.style.display = match ? 'flex' : 'none';
+                });
+            });
+        });
+
+        // 4. FORM ANIMATION
+        document.getElementById('resourceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = document.querySelector('.btn-submit');
+            const orig = btn.innerText;
+            btn.innerText = "TRANSMITTING...";
+            btn.style.background = "#555";
+            setTimeout(() => {
+                btn.innerText = "CONTRIBUTION RECEIVED";
+                btn.style.background = "#CD0000";
+                e.target.reset();
+                setTimeout(() => {
+                    btn.innerText = orig;
+                    btn.style.background = "#111";
+                }, 3000);
+            }, 1500);
+        });
+    </script>
 </body>
 </html>
