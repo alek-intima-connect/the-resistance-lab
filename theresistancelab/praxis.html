@@ -40,23 +40,22 @@
             margin: 0 auto;
             padding: 40px 5%;
         }
+		.news-ticker {
+			display: flex;
+			overflow: hidden;
+		}
 
-        /* --- HEADER & TICKER --- */
-        .news-ticker {
-            background: #111;
-            color: var(--bg-paper);
-            padding: 8px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: var(--border-thick);
-        }
-        .ticker-content { display: inline-block; animation: scroll-left 30s linear infinite; }
-        @keyframes scroll-left { from { transform: translateX(100%); } to { transform: translateX(-100%); } }
+		.ticker-content {
+			display: inline-block;
+			white-space: nowrap;
+			padding-left: 100%; /* Starts the text off-screen */
+			animation: scroll-left 40s linear infinite;
+		}
 
+		@keyframes scroll-left {
+			0% { transform: translateX(0); }
+			100% { transform: translateX(-100%); }
+		}
         header {
             margin-bottom: 50px;
             border-bottom: var(--border-thick);
@@ -244,8 +243,8 @@
 	</nav>
 
 	<div class="news-ticker">
-		<div class="ticker-content">
-			/// SYSTEM ALERT: Grid Stable /// NEW UPLOAD: RIOT MEDICINE /// BITCOIN: $98,420 /// DASHBOARD STATUS: Active /// NOSTR RELAY: Online ...
+		<div class="ticker-content" id="live-ticker">
+			/// INITIALIZING SECURE FEED... /// 
 		</div>
 	</div>
 
@@ -541,104 +540,120 @@
     <div class="save-btn" onclick="toggleSave(this, 'unique-id-1')">★</div>
 
 	<script>
-		// 1. IMPROVED FILTER LOGIC (Case Insensitive & Exact Match)
-		const btns = document.querySelectorAll('.filter-btn');
-		btns.forEach(btn => {
-			btn.addEventListener('click', () => {
-				btns.forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
-				
-				const filter = btn.getAttribute('data-filter').toLowerCase();
-				const cards = document.querySelectorAll('.resource-card');
-				
-				cards.forEach(card => {
-					const tag = card.querySelector('.card-tag') ? card.querySelector('.card-tag').innerText.toLowerCase() : '';
-					// Checks if "all" is selected OR if the tag contains the filter keyword
-					if (filter === 'all' || tag.includes(filter)) {
-						card.style.display = 'flex';
-					} else {
-						card.style.display = 'none';
-					}
-				});
-			});
-		});
+		// --- LIVE API FEED LOGIC ---
+		async function updateLiveTicker() {
+			const tickerContainer = document.getElementById('live-ticker');
+			const API_URL = "a83cbaa7e4d14e18bb80c81d6f51e68a"; // Replace with your actual API URL
 
-		// 2. PERSISTENT SAVED STATE (Local Storage)
-		function toggleSave(element, id) {
-			element.classList.toggle('saved');
-			const isSaved = element.classList.contains('saved');
-			localStorage.setItem(`saved_resource_${id}`, isSaved);
-			
-			// Brief feedback haptic/visual
-			if(isSaved) {
-				console.log(`Resource ${id} cached to local drive.`);
+			try {
+				const response = await fetch(API_URL);
+				const data = await response.json();
+
+				// Let's assume your API returns an array of headlines or a price string
+				// Map the data into a single string separated by '///'
+				// Example for Crypto: `BTC: ${data.price} /// ETH: ${data.eth_price}`
+				
+				const formattedFeed = `/// SYSTEM STATUS: ONLINE /// ${data.some_value} /// DATA UPDATED: ${new Date().toLocaleTimeString()} ///`;
+				
+				tickerContainer.innerText = formattedFeed;
+				
+			} catch (error) {
+				tickerContainer.innerText = "/// CONNECTION ERROR: FEED OFFLINE /// RECONNECTING... ///";
+				console.error("Ticker Feed Error:", error);
 			}
 		}
 
-		// 3. INITIALIZE SAVED STATES ON LOAD
+		// Update the feed every 60 seconds
+		setInterval(updateLiveTicker, 60000);
+		updateLiveTicker(); // Initial call
+	
+		// --- 1. UNIFIED FILTER & SEARCH LOGIC ---
+		const searchInput = document.getElementById('searchInput');
+		const filterBtns = document.querySelectorAll('.filter-btn');
+		const cards = document.querySelectorAll('.resource-card');
+
+		function updateDisplay() {
+			const searchTerm = searchInput.value.toLowerCase();
+			const activeFilter = document.querySelector('.filter-btn.active').getAttribute('data-filter').toLowerCase();
+
+			cards.forEach(card => {
+				const cardText = card.innerText.toLowerCase();
+				const cardTag = card.querySelector('.card-tag') ? card.querySelector('.card-tag').innerText.toLowerCase() : '';
+				
+				// Logic: Must match the search term AND the category filter
+				const matchesSearch = cardText.includes(searchTerm);
+				const matchesFilter = activeFilter === 'all' || cardTag.includes(activeFilter);
+
+				if (matchesSearch && matchesFilter) {
+					card.style.display = 'flex';
+				} else {
+					card.style.display = 'none';
+				}
+			});
+		}
+
+		// Event Listeners for Filters
+		filterBtns.forEach(btn => {
+			btn.addEventListener('click', () => {
+				filterBtns.forEach(b => b.classList.remove('active'));
+				btn.classList.add('active');
+				updateDisplay();
+			});
+		});
+
+		// Event Listener for Search
+		searchInput.addEventListener('keyup', updateDisplay);
+
+
+		// --- 2. WALLET COPY ---
+		function copyWallet(element) {
+			navigator.clipboard.writeText("0x71C7656EC7ab88b098defB751B7401B5f6d89A23");
+			const span = element.querySelector('.copy-text');
+			const originalText = span.innerText;
+			span.innerText = "COPIED!";
+			span.style.color = "#CD0000";
+			setTimeout(() => {
+				span.innerText = originalText;
+				span.style.color = "#fff";
+			}, 2000);
+		}
+
+
+		// --- 3. BOOKMARK / SAVE LOGIC ---
+		function toggleSave(element, id) {
+			element.classList.toggle('saved');
+			const isSaved = element.classList.contains('saved');
+			localStorage.setItem(`saved_res_${id}`, isSaved);
+		}
+
+		// Load saved states on startup
 		document.addEventListener('DOMContentLoaded', () => {
 			document.querySelectorAll('.save-btn').forEach((btn, index) => {
-				if (localStorage.getItem(`saved_resource_id-${index}`) === 'true') {
+				const id = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
+				if (localStorage.getItem(`saved_res_${id}`) === 'true') {
 					btn.classList.add('saved');
 				}
 			});
 		});
-        // 1. WALLET COPY
-        function copyWallet(element) {
-            navigator.clipboard.writeText("0x71C7656EC7ab88b098defB751B7401B5f6d89A23");
-            const span = element.querySelector('.copy-text');
-            const originalText = span.innerText;
-            span.innerText = "COPIED!";
-            span.style.color = "#CD0000";
-            setTimeout(() => {
-                span.innerText = originalText;
-                span.style.color = "#fff";
-            }, 2000);
-        }
 
-        // 2. SEARCH
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            const val = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.resource-card');
-            cards.forEach(card => {
-                const text = card.innerText.toLowerCase();
-                card.style.display = text.includes(val) ? 'flex' : 'none';
-            });
-        });
 
-        // 3. FILTER
-        const btns = document.querySelectorAll('.filter-btn');
-        btns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                btns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                const filter = btn.getAttribute('data-filter');
-                const cards = document.querySelectorAll('.resource-card');
-                cards.forEach(card => {
-                    const tag = card.querySelector('.card-tag') ? card.querySelector('.card-tag').innerText : '';
-                    const match = filter === 'all' || tag.includes(filter);
-                    card.style.display = match ? 'flex' : 'none';
-                });
-            });
-        });
-
-        // 4. FORM ANIMATION
-        document.getElementById('resourceForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = document.querySelector('.btn-submit');
-            const orig = btn.innerText;
-            btn.innerText = "TRANSMITTING...";
-            btn.style.background = "#555";
-            setTimeout(() => {
-                btn.innerText = "CONTRIBUTION RECEIVED";
-                btn.style.background = "#CD0000";
-                e.target.reset();
-                setTimeout(() => {
-                    btn.innerText = orig;
-                    btn.style.background = "#111";
-                }, 3000);
-            }, 1500);
-        });
-    </script>
+		// --- 4. FORM ANIMATION ---
+		document.getElementById('resourceForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const btn = document.querySelector('.btn-submit');
+			const orig = btn.innerText;
+			btn.innerText = "TRANSMITTING...";
+			btn.style.background = "#555";
+			setTimeout(() => {
+				btn.innerText = "CONTRIBUTION RECEIVED";
+				btn.style.background = "#CD0000";
+				e.target.reset();
+				setTimeout(() => {
+					btn.innerText = orig;
+					btn.style.background = "#111";
+				}, 3000);
+			}, 1500);
+		});
+	</script>
 </body>
 </html>
