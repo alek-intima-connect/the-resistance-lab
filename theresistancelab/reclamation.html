@@ -5,12 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mutual Aid | The Resistance Lab</title>
   
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23CD0000%22/></svg>">
+
   <script src="https://cdn.tailwindcss.com"></script>
   
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Merriweather:ital,wght@0,300;0,700;1,300&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-    /* Custom Font Definitions matching your classes */
+    /* Custom Font Definitions */
     .font-shout { font-family: 'Anton', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
     .font-machine { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.1em; }
     .font-theory { font-family: 'Merriweather', serif; line-height: 1.8; }
@@ -61,6 +63,14 @@
     .bg-red { background-color: #CD0000; }
     .text-red { color: #CD0000; }
     .border-red { border-color: #CD0000; }
+    
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .animate-marquee {
+        animation: marquee 20s linear infinite;
+    }
   </style>
 </head>
 
@@ -88,17 +98,21 @@
     <section class="bg-black text-gray-300 py-16 border-b-4 border-red">
       <div class="max-w-7xl mx-auto px-6 text-center">
 
-        <div class="flex items-center justify-center gap-2 mb-4">
-           <div class="w-3 h-3 bg-[#CD0000] animate-pulse rounded-full"></div>
-           <p class="font-machine text-[#CD0000] tracking-[0.2em]">[ADD LIVE CARD HERE]</p>
+        <div class="mx-auto mb-8 bg-red-50 border border-red-200 px-4 py-2 flex items-center gap-3 overflow-hidden max-w-md shadow-[4px_4px_0px_#333]">
+            <div class="w-2 h-2 bg-[#CD0000] animate-ping rounded-full shrink-0"></div>
+            <div class="font-machine text-[#CD0000] text-xs tracking-widest whitespace-nowrap overflow-hidden relative w-full h-4">
+                <span id="live-ticker" class="absolute animate-marquee">
+                    // LATEST: ANONYMOUS DONATION $100.00 // FOOD BANK REDISTRIBUTION -$50.00 // NEW STOCK COMING THIS WEEKEND! //
+                </span>
+            </div>
         </div>
-        
+
         <div class="flex items-center justify-center gap-2 mb-4">
            <div class="w-3 h-3 bg-[#CD0000] animate-pulse rounded-full"></div>
            <p class="font-machine text-[#CD0000] tracking-[0.2em]">PROLETARIAT FUNDED // 100% GOES BACK TO THE COMMUNITY</p>
         </div>
         
-        <h1 id="total-fund" class="font-shout text-7xl md:text-9xl mb-4 text-white">$161.00</h1>
+        <h1 id="total-fund" class="font-shout text-7xl md:text-9xl mb-4 text-white">$0.00</h1>
         
         <p class="font-machine text-sm md:text-xl tracking-widest text-gray-400 mb-8 max-w-2xl mx-auto">
           TOTAL WEALTH REDISTRIBUTED BACK TO THE PEOPLE
@@ -139,72 +153,71 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-200">
-            <tr class="bg-red-50">
-              <td class="py-3 pl-2">JAN 06, 2026</td>
-              <td class="py-3 text-[#CD0000] font-bold">INITIAL SEED FUND</td>
-              <td class="py-3 text-right pr-2">+$161.00</td>
-            </tr>
-          </tbody>
+            </tbody>
         </table>
       </div>
     </section>
 
     <section class="bg-[#e5e5e5] border-t-4 border-black py-16">
-      <div class="max-w-4xl mx-auto px-6">
-        <h2 class="font-shout text-7xl">Supply Depot</h2>
-        <p class="font-machine text-lg opacity-80 mb-12">
-          [COMING SOON]
-        </p>
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="font-shout text-7xl mb-12">Supply Depot</h2>
 
         <div class="grid md:grid-cols-3 gap-8">
           
           <div class="supply-card group">
-            <div class="absolute top-2 right-2 bg-black text-white font-machine text-xs px-2 py-1">IN STOCK</div>
-            <div class="img-slot">
-              <span class="font-machine text-gray-400 text-center">IMG:<br>HEAVY TEE</span>
-            </div>
-            <div class="p-6">
-              <h3 class="font-shout text-2xl">Standard Issue</h3>
-              <p class="font-theory text-sm text-gray-600 mb-4">
-                100% Cotton. Union Made. All proceeds to the Commons fund.
-              </p>
-              <div class="flex justify-between items-center border-t-2 border-black pt-4">
-                <span class="font-mono font-bold">$35.00</span>
-                <a href="#" class="bg-black text-white font-machine px-4 py-2 hover:underline hover:text-white decoration-4 underline-offset-4">CONTRIBUTE</a>
-              </div>
-            </div>
-          </div>
+             <div class="absolute top-2 right-2 bg-black text-white font-machine text-xs px-2 py-1 z-10">OUT OF STOCK</div>
+             <div class="img-slot overflow-hidden relative bg-gray-200">
+               <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop&sat=-100" 
+                    alt="Heavy Tee" 
+                    class="object-cover w-full h-full mix-blend-multiply hover:scale-110 transition-transform duration-500 grayscale contrast-125">
+             </div>
+             <div class="p-6">
+               <h3 class="font-shout text-2xl">AGIT-TEE</h3>
+               <p class="font-theory text-sm text-gray-600 mb-4">
+                 100% Cotton. Union Made. All proceeds go to the Commons fund.
+               </p>
+               <div class="flex justify-between items-center border-t-2 border-black pt-4">
+                 <span class="font-mono font-bold">$35.00</span>
+                 <a href="https://buy.stripe.com/test_mode_link" class="bg-black text-white font-machine px-4 py-2 hover:underline hover:text-white decoration-4 underline-offset-4">CONTRIBUTE</a>
+               </div>
+             </div>
+           </div>
 
-          <div class="supply-card group border-red hover:text-red">
-            <div class="absolute top-2 right-2 bg-red text-white font-machine text-xs px-2 py-1">DIRECT AID</div>
-            <div class="img-slot bg-red-50">
-              <span class="font-machine text-[#CD0000] text-center">SYMBOL:<br>BREAD & ROSES</span>
+          <div class="supply-card group border-red hover:text-red transition-colors duration-300">
+            <div class="absolute top-2 right-2 bg-[#CD0000] text-white font-machine text-xs px-2 py-1 z-10">DIRECT AID</div>
+            <div class="img-slot bg-red-50 overflow-hidden relative">
+              <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=800&auto=format&fit=crop&sat=-100" 
+                   alt="Solidarity" 
+                   class="object-cover w-full h-full hover:scale-110 transition-transform duration-500 grayscale contrast-125">
+              <div class="absolute inset-0 bg-[#CD0000] mix-blend-multiply opacity-60 pointer-events-none"></div>
             </div>
             <div class="p-6">
-              <h3 class="font-shout text-2xl">The Solidarity Buy</h3>
-              <p class="font-theory text-sm text-gray-600 mb-4">
+              <h3 class="font-shout text-2xl text-[#CD0000] group-hover:text-black transition-colors">The Solidarity Buy</h3>
+              <p class="font-theory text-sm text-gray-600 mb-4 group-hover:text-black">
                 Purchase nothing physical, but 100% of this goes to a local food bank network <strong>of your choosing.</strong>
               </p>
-              <div class="flex justify-between items-center border-t-2 border-red pt-4">
+              <div class="flex justify-between items-center border-t-2 border-[#CD0000] pt-4">
                 <span class="font-mono font-bold text-[#CD0000]">$50.00</span>
-                <a href="#" class="bg-red text-white font-machine px-4 py-2 hover:underline hover:text-white decoration-4 underline-offset-4">CONTRIBUTE</a>
+                <a href="https://buy.stripe.com/test_mode_link" class="bg-[#CD0000] text-white font-machine px-4 py-2 hover:bg-black hover:text-white transition-colors decoration-4 underline-offset-4">CONTRIBUTE</a>
               </div>
             </div>
           </div>
 
           <div class="supply-card group">
-            <div class="absolute top-2 right-2 bg-black text-white font-machine text-xs px-2 py-1">UNLIMITED</div>
-            <div class="img-slot">
-              <span class="font-machine text-gray-400 text-center">IMG:<br>STICKER PACK</span>
+            <div class="absolute top-2 right-2 bg-black text-white font-machine text-xs px-2 py-1 z-10">OUT OF STOCK</div>
+            <div class="img-slot overflow-hidden relative bg-gray-900">
+              <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?q=80&w=800&auto=format&fit=crop&sat=-100" 
+                   alt="Sticker Collage" 
+                   class="object-cover w-full h-full grayscale contrast-125 hover:scale-110 transition-transform duration-500 opacity-90">
             </div>
             <div class="p-6">
               <h3 class="font-shout text-2xl">Agitprop Pack</h3>
               <p class="font-theory text-sm text-gray-600 mb-4">
-                50 Vinyl Stickers. Place them where you see fit.
+                50 Vinyl Stickers. High durability. Place them where you see fit to reclaim public space.
               </p>
               <div class="flex justify-between items-center border-t-2 border-black pt-4">
                 <span class="font-mono font-bold">$15.00</span>
-                <a href="#" class="bg-black text-white font-machine px-4 py-2 hover:underline hover:text-white decoration-4 underline-offset-4">CONTRIBUTE</a>
+                <a href="https://buy.stripe.com/test_mode_link" class="bg-black text-white font-machine px-4 py-2 hover:underline hover:text-white decoration-4 underline-offset-4">CONTRIBUTE</a>
               </div>
             </div>
           </div>
@@ -216,11 +229,8 @@
     <section class="bg-black text-white py-16">
       <div class="max-w-4xl mx-auto px-6 text-center">
         <h2 class="font-shout text-4xl mb-4">Bypass The Product.</h2>
-        <p class="font-theory text-lg opacity-80">
-          Don't need gear? Contribute directly to the Sanctuary Fund. 100% efficiency. No overhead.
-        </p>
         <p class="font-theory text-lg opacity-80 mb-8">
-          [COMING SOON]
+          Don't need gear? Contribute directly to the Sanctuary Fund. 100% efficiency. No overhead.
         </p>
         <div class="flex flex-col md:flex-row justify-center gap-4">
           <a href="https://donate.stripe.com/test_9B65kFfBtalN66s2ga3ZK00" class="border-2 border-white text-white font-machine px-8 py-4 hover:bg-white hover:text-black transition-all">
@@ -251,10 +261,55 @@
     </div>
   </footer>
 
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
   <script defer src="/_vercel/speed-insights/script.js"></script>
+  
+  <script>
+    // 1. The Data Source (Add your transactions here)
+    const transactions = [
+      { date: "JAN 06, 2026", type: "INITIAL SEED FUND", amount: 161.00, isCredit: true },
+      { date: "JAN 19, 2026", type: "AGIT-TEE PURCHASE", amount: 35.00, isCredit: true },
+      { date: "JAN 23, 2026", type: "FOOD BANK REDISTRIBUTION", amount: -50.00, isCredit: false },
+      { date: "JAN 27, 2026", type: "ANONYMOUS DONATION", amount: 100.00, isCredit: true },
+    ];
 
+    // 2. Select DOM Elements
+    const totalFundEl = document.getElementById('total-fund');
+    const ledgerBody = document.querySelector('tbody');
+
+    // 3. Render Functions
+    function renderLedger() {
+      let currentTotal = 0;
+      let html = '';
+
+      // Optional: Sort by date if needed
+      // transactions.reverse(); 
+
+      transactions.forEach(tx => {
+        // Calculate Total
+        currentTotal += tx.amount;
+
+        // Format Currency
+        const formattedAmt = (tx.amount > 0 ? '+' : '') + tx.amount.toFixed(2);
+        const rowClass = tx.isCredit ? 'bg-red-50' : 'bg-white text-gray-400';
+        const typeClass = tx.isCredit ? 'text-[#CD0000] font-bold' : 'text-black';
+
+        // Build Row HTML
+        html += `
+          <tr class="${rowClass} border-b border-gray-100 last:border-0">
+            <td class="py-3 pl-2">${tx.date}</td>
+            <td class="py-3 ${typeClass}">${tx.type}</td>
+            <td class="py-3 text-right pr-2 font-mono">$${formattedAmt}</td>
+          </tr>
+        `;
+      });
+
+      // Update the DOM
+      ledgerBody.innerHTML = html;
+      totalFundEl.innerText = '$' + currentTotal.toFixed(2);
+    }
+
+    // Initialize
+    renderLedger();
+  </script>
 </body>
 </html>
